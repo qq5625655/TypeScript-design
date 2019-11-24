@@ -1,25 +1,132 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js + TypeScript App"/>
+    <img alt="Vue logo" src="./assets/logo.png" />
+    <!-- <HelloWorld msg="Welcome to Your Vue.js + TypeScript App" /> -->
+    <Table height="200" :columns="columns1" :data="data1"></Table>
   </div>
 </template>
 
 <script lang="ts">
-import { Component, Vue } from 'vue-property-decorator';
-import HelloWorld from './components/HelloWorld.vue';
+import { Component, Vue } from "vue-property-decorator";
+import HelloWorld from "./components/HelloWorld.vue";
+import Table from "@/views/table.vue";
 
 @Component({
   components: {
     HelloWorld,
-  },
+    Table
+  }
 })
-export default class App extends Vue {}
+export default class App extends Vue {
+  data() {
+    return {
+      columns1: [
+        {
+          title: "Name",
+          key: "name",
+          width: 100,
+          fixed: "left"
+        },
+        {
+          title: "Age",
+          key: "age",
+          width: 100
+        },
+        {
+          title: "Province",
+          key: "province",
+          width: 100
+        },
+        {
+          title: "City",
+          key: "city",
+          width: 100
+        },
+        {
+          title: "Address",
+          key: "address",
+          width: 200
+        },
+        {
+          title: "Postcode",
+          key: "zip",
+          width: 100
+        }
+      ],
+      data1: [
+        {
+          name: "John Brown",
+          age: 18,
+          address: "New York No. 1 Lake Park",
+          province: "America",
+          city: "New York",
+          zip: 100000
+        },
+        {
+          name: "Jim Green",
+          age: 24,
+          address: "Washington, D.C. No. 1 Lake Park",
+          province: "America",
+          city: "Washington, D.C.",
+          zip: 100000
+        },
+        {
+          name: "Joe Black",
+          age: 30,
+          address: "Sydney No. 1 Lake Park",
+          province: "Australian",
+          city: "Sydney",
+          zip: 100000
+        },
+        {
+          name: "Jon Snow",
+          age: 26,
+          address: "Ottawa No. 2 Lake Park",
+          province: "Canada",
+          city: "Ottawa",
+          zip: 100000
+        },
+        {
+          name: "John Brown",
+          age: 18,
+          address: "New York No. 1 Lake Park",
+          province: "America",
+          city: "New York",
+          zip: 100000
+        },
+        {
+          name: "Jim Green",
+          age: 24,
+          address: "Washington, D.C. No. 1 Lake Park",
+          province: "America",
+          city: "Washington, D.C.",
+          zip: 100000
+        },
+        {
+          name: "Joe Black",
+          age: 30,
+          address: "Sydney No. 1 Lake Park",
+          province: "Australian",
+          city: "Sydney",
+          zip: 100000
+        },
+        {
+          name: "Jon Snow",
+          age: 26,
+          address: "Ottawa No. 2 Lake Park",
+          province: "Canada",
+          city: "Ottawa",
+          zip: 100000
+        }
+      ]
+    };
+  }
+}
 </script>
 
 <style lang="scss">
 #app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
+  font-family: "Avenir", Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;

@@ -1,29 +1,50 @@
 <template>
-    <table class="table-init">
-        <tbody>
-            <tr v-for="(item, index) in data" :key="index">
-                <td v-for="(column, colIndex) in columns" :key="colIndex">
-                    <div class="table-cell">
-                        <span>{{ item[column.key] }}</span>
-                    </div>
-                </td>
-            </tr>
-        </tbody>
+  <div  class="over">
+    <table :style="styles"  class="table-init">
+      <tbody>
+        <tr v-for="(item, index) in data" :key="index">
+          <td v-for="(column, colIndex) in columns" :key="colIndex">
+            <div class="table-cell">
+              <span>{{ item[column.key] }}</span>
+            </div>
+          </td>
+        </tr>
+      </tbody>
     </table>
+  </div>
 </template>
 <script>
 export default {
-    computed: {},
-    props: {
-        columns: {
-            type: Array
-        },
-        data: {
-            type: Array
-        },
-        height: {
-            type: Number
-        }
+  props: {
+    columns: {
+      type: Array
+    },
+    data: {
+      type: Array
+    },
+    height: {
+      type: Number
+    },
+    tableBodyWidth: [Object, Number]
+  },
+  computed: {
+    styles() {
+      let style = {};
+      const width = parseInt(this.tableBodyWidth);
+      style.width = `${width}px`;
+      console.log("tableBodyWidth", this.tableBodyWidth);
+      return style;
+      //   const style = Object.assign({}, this.styleObject);
+
+      //   if(!!style.width){
+
+      //   }
     }
+  }
 };
 </script>
+<style scoped>
+.over {
+  overflow: hidden;
+}
+</style>
