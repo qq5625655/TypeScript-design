@@ -1,6 +1,9 @@
 <template>
-  <div class="over">
+  <!-- <div   class="over"> -->
     <table :style="styles" class="table-init">
+      <colgroup>
+        <col v-for="(item, index) in columns" :key="index" :width="setCellWith(item)">
+      </colgroup>
       <!-- <colgroup>
         <col v-for="(column, index) in columns" :key="index" :width="setCellWidth(column)" />
       </colgroup>-->
@@ -14,7 +17,7 @@
         </tr>
       </thead>
     </table>
-  </div>
+  <!-- </div> -->
 </template>
 <script>
 export default {
@@ -43,8 +46,15 @@ export default {
       //   if(!!style.width){
 
       //   }
-    }
-  }
+    },
+    
+  },
+  methods:{
+    setCellWith(item){
+      const width = item.width ? item.width : this.tableBodyWidth;
+      return `${width}`;
+    },
+  },
 };
 </script>
 <style scoped>
