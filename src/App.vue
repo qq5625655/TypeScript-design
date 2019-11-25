@@ -2,7 +2,7 @@
   <div id="app">
     <img alt="Vue logo" src="./assets/logo.png" />
     <!-- <HelloWorld msg="Welcome to Your Vue.js + TypeScript App" /> -->
-    <Table height="200" :columns="columns1" :data="data1"></Table>
+    <Table width="550" height="200" :columns="columns1" :data="data1"></Table>
   </div>
 </template>
 
@@ -50,7 +50,8 @@ export default class App extends Vue {
         {
           title: "Postcode",
           key: "zip",
-          width: 100
+          width: 100,
+          fixed:'right',
         }
       ],
       data1: [

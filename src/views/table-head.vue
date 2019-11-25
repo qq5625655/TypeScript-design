@@ -14,6 +14,7 @@
               <span>{{ column.title }}</span>
             </div>
           </th>
+          <th  v-if="$parent.isRightFixed" :style="scrollWidth"></th>
         </tr>
       </thead>
     </table>
@@ -47,6 +48,12 @@ export default {
 
       //   }
     },
+    scrollWidth(){
+        const width = this.$parent.scrollWidth;
+        if(!!width){
+            return `${width}px`;
+        }
+    }
     
   },
   methods:{
