@@ -16,7 +16,7 @@
         ></tableHead>
       </div>
 
-      <div class="table-fixed-body" :style="bodyFixHeightStyle" ref="fixedBody">
+      <div class="table-fixed-body" :style="bodyFixHeightStyle" ref="fixedLeftBody">
         <tableBody
           :columns="convertColumnOrder(columns, 'left')"
           :data="data"
@@ -24,7 +24,7 @@
         ></tableBody>
       </div>
     </div>
-    <div class="table-fixed-right" v-if="isRightFixed" :style="fixedRightTableStyle">
+    <div class="table-fixed-right" ref="fixRight" v-if="isRightFixed" :style="fixedRightTableStyle">
       <div class="table-fixed-header">
         <tableHead
           :columns="convertColumnOrder(columns, 'right')"
@@ -33,7 +33,7 @@
         ></tableHead>
       </div>
 
-      <div class="table-fixed-body" :style="bodyFixHeightStyle">
+      <div class="table-fixed-body" :style="bodyFixHeightStyle" ref="fixedRightBody">
         <tableBody
           :columns="convertColumnOrder(columns, 'right')"
           :data="data"
@@ -164,7 +164,7 @@ export default {
       let width = 0;
       
       let height = this.titleHeight - 2;
-      console.log('height', height)
+
       if (this.isRightFixed) {
         width = this.scrollWidth;
       }
@@ -176,9 +176,11 @@ export default {
   methods: {
     handleBodyScroll(event) {
       if (this.isLeftFixed) {
-        this.$refs.fixedBody.scrollTop = event.target.scrollTop;
+        this.$refs.fixedLeftBody.scrollTop = event.target.scrollTop;
       }
-
+      if(this.isRightFixed){
+        this.$refs.fixedRightBody.scrollTop = event.target.scrollTop;
+      }
       this.$refs.title.scrollLeft = event.target.scrollLeft;
     },
     leftWidth() {

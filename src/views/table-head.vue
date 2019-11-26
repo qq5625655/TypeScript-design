@@ -3,6 +3,7 @@
     <table :style="styles" class="table-init">
       <colgroup>
         <col v-for="(item, index) in columns" :key="index" :width="setCellWith(item)">
+        <col v-if="$parent.isRightFixed" :width="scrollWidth">
       </colgroup>
       <!-- <colgroup>
         <col v-for="(column, index) in columns" :key="index" :width="setCellWidth(column)" />
@@ -14,7 +15,7 @@
               <span>{{ column.title }}</span>
             </div>
           </th>
-          <th  v-if="$parent.isRightFixed" :style="scrollWidth"></th>
+          <th  v-if="$parent.isRightFixed" ></th>
         </tr>
       </thead>
     </table>
@@ -40,7 +41,7 @@ export default {
       let style = {};
       const width = parseInt(this.tableBodyWidth);
       style.width = `${width}px`;
-      console.log('tableBodyWidth', this.tableBodyWidth);
+
       return style;
       //   const style = Object.assign({}, this.styleObject);
 
@@ -50,7 +51,8 @@ export default {
     },
     scrollWidth(){
         const width = this.$parent.scrollWidth;
-        if(!!width){
+
+        if(width){
             return `${width}px`;
         }
     }
