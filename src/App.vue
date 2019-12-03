@@ -3,6 +3,7 @@
     <img alt="Vue logo" src="./assets/logo.png" />
     <!-- <HelloWorld msg="Welcome to Your Vue.js + TypeScript App" /> -->
     <Table width="550" height="200" :columns="columns1" :data="data1"></Table>
+    <Button></Button>
   </div>
 </template>
 
@@ -10,11 +11,13 @@
 import { Component, Vue } from "vue-property-decorator";
 import HelloWorld from "./components/HelloWorld.vue";
 import Table from "@/views/table.vue";
+import Button from '@/views/components/button/button.vue'
 
 @Component({
   components: {
     HelloWorld,
-    Table
+    Table,
+    Button
   }
 })
 export default class App extends Vue {

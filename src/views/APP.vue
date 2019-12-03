@@ -22,10 +22,11 @@
 import Cascader from "./Cascader2.vue";
 import dataList from "./data.json";
 import YuTable from "./table";
+
 export default {
     components: {
         Cascader,
-        YuTable
+        YuTable,
     },
     data() {
         return {
