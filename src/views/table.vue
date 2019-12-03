@@ -1,5 +1,5 @@
 <template>
-  <div class="yutable_wrap" :style="styles">
+  <div  :class="wrapClasses" :style="styles">
     <div class="table-header" ref="title">
       <tableHead :columns="cloneColumns" :data="data"></tableHead>
     </div>
@@ -16,7 +16,7 @@
         ></tableHead>
       </div>
 
-      <div class="table-fixed-body" :style="bodyFixHeightStyle" ref="fixedBody">
+      <div class="table-fixed-body" :style="bodyFixHeightStyle" ref="fixedLeftBody">
         <tableBody
           :columns="convertColumnOrder(columns, 'left')"
           :data="data"
@@ -24,7 +24,7 @@
         ></tableBody>
       </div>
     </div>
-    <div class="table-fixed-right" v-if="isRightFixed" :style="fixedRightTableStyle">
+    <div class="table-fixed-right" ref="fixRight" v-if="isRightFixed" :style="fixedRightTableStyle">
       <div class="table-fixed-header">
         <tableHead
           :columns="convertColumnOrder(columns, 'right')"
@@ -33,7 +33,7 @@
         ></tableHead>
       </div>
 
-      <div class="table-fixed-body" :style="bodyFixHeightStyle">
+      <div class="table-fixed-body" :style="bodyFixHeightStyle" ref="fixedRightBody">
         <tableBody
           :columns="convertColumnOrder(columns, 'right')"
           :data="data"
@@ -41,7 +41,7 @@
         ></tableBody>
       </div>
     </div>
-    <div v-if="isRightFixed" :style="fixedRightScroll" class="fixed-right-scroll"></div>
+    <div v-if="width !== 0" :style="fixedRightScroll" class="fixed-right-scroll"></div>
   </div>
 </template>
 <script>
@@ -67,7 +67,11 @@ export default {
     },
     width: {
       type: [String, Number]
-    }
+    },
+    border:{
+      type: Boolean,
+      default: false,
+    },
   },
   data() {
     return {
@@ -76,15 +80,25 @@ export default {
       fixLeftWidth: 0,
       cloneColumns: this.markColumns(this.columns),
       titleHeight:0,
+      fixRightWidth: 0,
     };
   },
 
   computed: {
+    wrapClasses(){
+      return[
+        `yutable_wrap`,
+        {
+          [`yutable_wrap_border`]: this.border,
+        }
+      ]
+    },
     classes() {
       return [
         {
           [`table-body-overflowY`]: this.height,
-          ["table-body-overflowX"]: this.width
+          ["table-body-overflowX"]: this.width,
+          ['table-border']: this.border,
         }
       ];
     },
@@ -116,6 +130,7 @@ export default {
       return this.columns.some(col => col.fixed && col.fixed === "left");
     },
     isRightFixed() {
+
       return this.columns.some(col => col.fixed && col.fixed === "right");
     },
     fixedLeftTableStyle() {
@@ -133,8 +148,8 @@ export default {
       if (this.height) {
         style.right = `${this.scrollWidth}px`;
       }
-      if (this.fixLeftWidth !== 0) {
-        style.width = `${this.fixLeftWidth}px`;
+      if (this.fixRightWidth !== 0) {
+        style.width = `${this.fixRightWidth}px`;
       }
       return style;
     },
@@ -164,10 +179,11 @@ export default {
       let width = 0;
       
       let height = this.titleHeight - 2;
-      console.log('height', height)
+
       if (this.isRightFixed) {
-        width = this.scrollWidth;
+        
       }
+      width = this.scrollWidth;
       style.width = `${width}px`;
       style.height = `${height}px`;
       return style;
@@ -176,21 +192,17 @@ export default {
   methods: {
     handleBodyScroll(event) {
       if (this.isLeftFixed) {
-        this.$refs.fixedBody.scrollTop = event.target.scrollTop;
+        this.$refs.fixedLeftBody.scrollTop = event.target.scrollTop;
       }
-
+      if(this.isRightFixed){
+        this.$refs.fixedRightBody.scrollTop = event.target.scrollTop;
+      }
       this.$refs.title.scrollLeft = event.target.scrollLeft;
     },
-    leftWidth() {
+    fixedLeftWidth() {
       this.$nextTick(() => {
         // let style = {};
         let width = 0;
-
-        // this.fixLeftWidth =
-        //     parseInt(this.getStyle(this.$el, "width")) -
-        //     this.scrollWidth -
-        //     2;
-
         this.columns.forEach(col => {
           if (col.fixed && col.fixed === "left") {
             width = col.width ? col.width : "";
@@ -204,9 +216,25 @@ export default {
               2) /
             this.columns.length;
         }
-        // this.fixLeftWidth = `${width}px`;
-
-        // return style;
+      });
+    },
+    fixedRightWidth(){
+      this.$nextTick(() => {
+        // let style = {};
+        let width = 0;
+        this.columns.forEach(col => {
+          if (col.fixed && col.fixed === "right") {
+            width = col.width ? col.width : "";
+            this.fixRightWidth += width;
+          }
+        });
+        if (this.fixRightWidth === "0") {
+          this.fixRightWidth =
+            (parseInt(this.getStyle(this.$el, "width")) -
+              this.scrollWidth -
+              2) /
+            this.columns.length;
+        }
       });
     },
     tableHeight() {
@@ -296,7 +324,10 @@ export default {
     this.tableHeight();
     this.markColumns();
     if (this.isLeftFixed) {
-      this.leftWidth();
+      this.fixedLeftWidth();
+    }
+    if(this.isRightFixed){
+      this.fixedRightWidth();
     }
 
     // this.scrollWidth = this.$el.offsetWidth - 2;
