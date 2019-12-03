@@ -3,7 +3,7 @@
     <table :style="styles" class="table-init">
       <colgroup>
         <col v-for="(item, index) in columns" :key="index" :width="setCellWith(item)">
-        <col v-if="$parent.isRightFixed" :width="scrollWidth">
+        <col v-if="$parent.width" :width="scrollWidth">
       </colgroup>
       <!-- <colgroup>
         <col v-for="(column, index) in columns" :key="index" :width="setCellWidth(column)" />
@@ -15,7 +15,7 @@
               <span>{{ column.title }}</span>
             </div>
           </th>
-          <th  v-if="$parent.isRightFixed" ></th>
+          <th  v-if="$parent.width" ></th>
         </tr>
       </thead>
     </table>
