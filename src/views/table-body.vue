@@ -7,9 +7,13 @@
       <tbody>
         <tr v-for="(item, index) in data" :key="index">
           <td v-for="(column, colIndex) in columns" :key="colIndex">
-            <div class="table-cell">
-              <span>{{ item[column.key] }}</span>
+            
+              <div class="table-cell">
+                <Checkbox :value="rowChecked(index)" @onChnage="toggleSelect(index)" v-if="column.type === 'selection'"></Checkbox>
+              <span  v-else>{{ item[column.key] }}</span>
+              
             </div>
+           
           </td>
         </tr>
       </tbody>
@@ -17,7 +21,11 @@
   <!-- </div> -->
 </template>
 <script>
+import Checkbox from './checkbox';
+import Emitter from "./emitterTest";
 export default {
+
+  mixins:[Emitter],
   props: {
     columns: {
       type: Array
@@ -29,14 +37,21 @@ export default {
       type: Number
     },
     tableBodyWidth: [Object, Number],
+    checkColumn:{
+      type: Array,
+    },
     // bodyHeightStyle: Object,
   },
+  components:{
+    Checkbox,
+  },
   computed: {
+    
     styles() {
       let style = {};
       const width = parseInt(this.tableBodyWidth);
       style.width = `${width}px`;
-      console.log("tableBodyWidth", this.tableBodyWidth);
+
       return style;
       //   const style = Object.assign({}, this.styleObject);
 
@@ -47,6 +62,15 @@ export default {
     
   },
   methods:{
+    rowChecked(index){
+      return this.checkColumn[index] && this.checkColumn[index].checked;
+    },
+    toggleSelect(index){
+      
+      this.dispatch('yuTable', 'toggleSelect', {
+        index,
+      })
+    },
     setCellWith(item){
       const width = item.width ? item.width : this.tableBodyWidth;
       return width;
