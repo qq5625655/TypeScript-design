@@ -18,7 +18,7 @@ export default {
           title: "Name",
           key: "name",
           width: 100,
-          fixed: "left"
+          // fixed: "left"
         },
         {
           title: "Age",

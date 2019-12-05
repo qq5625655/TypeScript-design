@@ -30,72 +30,8 @@ export default {
     },
     data() {
         return {
-            columns1: [
-                {
-                    title: "Name",
-                    key: "name",
-                    fixed:'left',
-                },
-                {
-                    title: "Age",
-                    key: "age",
-                    // fixed:"left",
-                },
-                {
-                    title: "Address",
-                    key: "address"
-                }
-            ],
-            data2: [
-                {
-                    name: "John Brown张旭升的测试测试测试测试测试",
-                    age: 18,
-                    address: "New York No. 1 Lake Park张旭升的测试测试测试测试测试",
-                    date: "2016-10-03"
-                },
-                {
-                    name: "Jim Green张旭升的测试测试测试测试测试",
-                    age: 24,
-                    address: "London No. 1 Lake Park张旭升的测试测试测试测试测试",
-                    date: "2016-10-01"
-                },
-                {
-                    name: "Joe Black张旭升的测试测试测试测试测试",
-                    age: 30,
-                    address: "Sydney No. 1 Lake Park张旭升的测试测试测试测试测试",
-                    date: "2016-10-02"
-                },
-                {
-                    name: "Jon Snow张旭升的测试测试测试测试测试",
-                    age: 26,
-                    address: "Ottawa No. 2 Lake Park张旭升的测试测试测试测试测试",
-                    date: "2016-10-04"
-                },
-                {
-                    name: "John Brown张旭升的测试测试测试测试测试",
-                    age: 18,
-                    address: "New York No. 1 Lake Park张旭升的测试测试测试测试测试",
-                    date: "2016-10-03"
-                },
-                {
-                    name: "Jim Green张旭升的测试测试测试测试测试",
-                    age: 24,
-                    address: "London No. 1 Lake Park张旭升的测试测试测试测试测试",
-                    date: "2016-10-01"
-                },
-                {
-                    name: "Joe Black张旭升的测试测试测试测试测试",
-                    age: 30,
-                    address: "Sydney No. 1 Lake Park张旭升的测试测试测试测试测试",
-                    date: "2016-10-02"
-                },
-                {
-                    name: "Jon Snow张旭升的测试测试测试测试测试",
-                    age: 26,
-                    address: "Ottawa No. 2 Lake Park张旭升的测试测试测试测试测试",
-                    date: "2016-10-04"
-                }
-            ],
+
+
             options: [],
             // value: ['jiangsu/nanjing/fuzimiao', 'jiangsu/nanjing/nanjingjie'],
             value2: [],

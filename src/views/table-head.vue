@@ -13,6 +13,7 @@
           <th v-for="(column, index) in columns" :key="index">
             <div class="table-cell">
               <span>{{ column.title }}</span>
+              <input v-if="column.type === 'selection'" type="checkbox">
             </div>
           </th>
           <th  v-if="$parent.width" ></th>
