@@ -74,7 +74,7 @@
 <script>
 import tableHead from "./table-head";
 import tableBody from "./table-body";
-// import "./table.scss";
+import "./table.scss";
 export default {
     name: "yuTable",
     components: {
@@ -386,7 +386,7 @@ export default {
             }
             
             
-            for (var prop in src) {
+            for (const prop in src) {
                 if (src.hasOwnProperty(prop)) {
                     dst[prop] = src[prop];
                 }

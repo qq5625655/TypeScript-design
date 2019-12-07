@@ -22,6 +22,9 @@
                             :value="isSelectAll"
                             @onChnage="selectAll"
                         ></Checkbox>
+                        <span v-if="column.type === 'selection'">
+                          <i class="icon-arrow-up"></i>
+                        </span>
                         <span v-else>{{ column.title }}</span>
                     </div>
                 </th>
