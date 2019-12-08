@@ -23,9 +23,7 @@ interface Style {
 
 @Component
 export default class Button extends Vue {
-  @Prop({
-    
-  })
+  @Prop({})
   private readonly buttonProps!: ButtonProps;
 
   mount(): void {

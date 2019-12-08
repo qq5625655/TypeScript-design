@@ -3,6 +3,7 @@
     <img alt="Vue logo" src="./assets/logo.png" />
     <!-- <HelloWorld msg="Welcome to Your Vue.js + TypeScript App" /> -->
     <Table width="550" height="200" :columns="columns1" :data="data1"></Table>
+    <Tree :data="data2"></Tree>
     <!-- <Button></Button> -->
   </div>
 </template>
@@ -10,14 +11,15 @@
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
 import HelloWorld from './components/HelloWorld.vue';
-import Table from '@/views/table.vue';
-import Button from '@/views/components/button/button.vue';
-
+import Table from '@/components/table/table.vue';
+import Button from '@/components/button/button.vue';
+import Tree from '@/components/tree/tree.vue';
 @Component({
   components: {
     HelloWorld,
     Table,
-    Button
+    Button,
+    Tree
   }
 })
 export default class App extends Vue {
@@ -126,6 +128,38 @@ export default class App extends Vue {
           province: 'Canada',
           city: 'Ottawa',
           zip: 100000
+        }
+      ],
+      data2: [
+        {
+          title: 'parent 1',
+          expand: true,
+          children: [
+            {
+              title: 'parent 1-1',
+              expand: true,
+              children: [
+                {
+                  title: 'leaf 1-1-1'
+                },
+                {
+                  title: 'leaf 1-1-2'
+                }
+              ]
+            },
+            {
+              title: 'parent 1-2',
+              expand: true,
+              children: [
+                {
+                  title: 'leaf 1-2-1'
+                },
+                {
+                  title: 'leaf 1-2-1'
+                }
+              ]
+            }
+          ]
         }
       ]
     };
