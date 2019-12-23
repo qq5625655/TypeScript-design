@@ -2,7 +2,7 @@
     <CollapseTransition>
         <ul :class="classes">
             <li>
-                <span @click="handleExpand" v-if="showArrow">
+                <span class="test" @click="handleExpand" v-if="showArrow">
                     <i :class="arrowClasses"></i>
                 </span>
                 <span :class="titleClasses">{{ data.title }}</span>
@@ -84,7 +84,12 @@ export default {
 // .fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
 //   opacity: 0;
 // }
-
+.test{
+    width: 5px;
+    height: 5px;
+    display: inline-block;
+    background: black; 
+}
 .yu-tree-children {
     list-style: none;
     margin: 0;

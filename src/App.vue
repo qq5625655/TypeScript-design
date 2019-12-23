@@ -3,8 +3,10 @@
     <img alt="Vue logo" src="./assets/logo.png" />
     <!-- <HelloWorld msg="Welcome to Your Vue.js + TypeScript App" /> -->
     <Table width="550" height="200" :columns="columns1" :data="data1"></Table>
-    <Tree :data="data2"></Tree>
-    <!-- <Button></Button> -->
+    <!-- <Tree :data="data2"></Tree> -->
+    <Button>Default</Button>
+    <Button type="primary">Primary</Button>
+    <Button type="dashed">Primary</Button>
   </div>
 </template>
 
@@ -13,7 +15,7 @@ import { Component, Vue } from 'vue-property-decorator';
 import HelloWorld from './components/HelloWorld.vue';
 import Table from '@/components/table/table.vue';
 import Button from '@/components/button/button.vue';
-import Tree from '@/components/tree/tree.vue';
+import Tree from '@/views/tree.vue';
 @Component({
   components: {
     HelloWorld,
