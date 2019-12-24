@@ -9,7 +9,7 @@ import { Component, Vue, Prop } from 'vue-property-decorator';
 export interface ButtonProps {
   //strictPropertyInitialization 启用，确保类的非undefined属性已经在构造函数里初始化。
   disable?: Boolean;
-  size?: number;
+  size?: string;
   // disable! 断言这个是非null非undefined的类型断言，一会测试
   // ?表示可以为空
 }
@@ -24,8 +24,8 @@ const prefixCls = 'itu-btn';
 export default class Button extends Vue {
   //! 表示类型断言，非null非undefined
   @Prop({}) disable?: boolean;
-  @Prop({ default: 100 }) size?: number;
-  @Prop({default:'default'}) type!: string;
+  @Prop({ default: 'default' }) size!: string;
+  @Prop({ default: 'default' }) type!: string;
   @Prop({ default: false }) ghost!: boolean;
   // private readonly buttonProps!: ButtonProps;
 
@@ -38,9 +38,8 @@ export default class Button extends Vue {
       `${prefixCls}`,
       `${prefixCls}-${this.type}`,
       {
-        [`${prefixCls}-${this.size}`]: this.size !== 100,
+        [`${prefixCls}-${this.size}`]: this.size !== 'default',
         [`${prefixCls}-ghost`]: this.ghost
-        
       }
     ];
   }
@@ -59,6 +58,4 @@ export default class Button extends Vue {
   }
 }
 </script>
-<style lang="less" scoped>
-
-</style>
+<style lang="less" scoped></style>

@@ -5,14 +5,14 @@
     <Table width="550" height="200" :columns="columns1" :data="data1"></Table>
     <!-- <Tree :data="data2"></Tree> -->
     <div class="example">
-      <Button ghost="true">Default</Button>
-      <Button type="primary">Primary</Button>
-      <Button type="dashed">Primary</Button>
-      <Button type="text">text</Button>
-      <Button type="success">success</Button>
-      <Button type="info">info</Button>
-      <Button type="warning">warning</Button>
-      <Button type="error">error</Button>
+      <Button size="large" ghost="true">Default</Button>
+      <Button size="small" ghost="true" type="primary">Primary</Button>
+      <Button ghost="true" type="dashed">Primary</Button>
+      <Button ghost="true" type="text">text</Button>
+      <Button ghost="true" type="success">success</Button>
+      <Button ghost="true" type="info">info</Button>
+      <Button ghost="true" type="warning">warning</Button>
+      <Button ghost="true" type="error">error</Button>
     </div>
   </div>
 </template>
@@ -178,7 +178,7 @@ export default class App extends Vue {
 
 <style lang="less">
 @import './styles/index.less';
-.example{
+.example {
   height: 200px;
   width: 1000px;
   background: rgb(190, 200, 200);

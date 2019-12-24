@@ -26,6 +26,7 @@
 }
 .btn() {
   display: inline-block;
+  height: 32px;
   margin-bottom: 0;
   text-align: center;
   vertical-align: middle;
@@ -37,6 +38,14 @@
   .button-size(@btn-padding-base; @btn-font-size; @btn-border-radius);
   transition: color @transition-time linear, background-color @transition-time linear,
     border @transition-time linear, box-shadow @transition-time linear;
+  &-small{
+    .button-size(@btn-padding-small; @btn-font-size; @btn-border-radius-small);
+    height: 24px;
+  }
+  &-large{
+    .button-size(@btn-padding-large; @btn-font-size-large; @btn-border-radius);
+    height: 40px;
+  }
 }
 
 // default
@@ -76,5 +85,12 @@
 // 颜色按钮
 .btn-color-type(@color) {
   .button-variant(@btn-primary-color, @color, @color);
-  
+}
+// ghost
+.btn-ghost-type(@color){
+  color: @color;
+  &:hover{
+    color: tint(@color, 20%);
+    background: fade(tint(@color, 95%), 50%);
+}
 }

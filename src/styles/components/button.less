@@ -56,20 +56,35 @@
   &-success {
     .btn-color-type(@success-color);
   }
-  &-info{
+  &-info {
     .btn-color-type(@info-color);
   }
-  &-warning{
+  &-warning {
     .btn-color-type(@warning-color);
   }
-  &-error{
+  &-error {
     .btn-color-type(@error-color);
   }
-  &-ghost{
+  &-ghost {
     color: #fff;
     background: transparent;
-    &:hover{
-        background: transparent;
+    &:hover {
+      background: transparent;
     }
+  }
+  &-ghost&-primary {
+    .btn-ghost-type(@primary-color);
+  }
+  &-ghost&-info {
+    .btn-ghost-type(@info-color);
+  }
+  &-ghost&-success {
+    .btn-ghost-type(@success-color);
+  }
+  &-ghost&-warning {
+    .btn-ghost-type(@warning-color);
+  }
+  &-ghost&-error {
+    .btn-ghost-type(@error-color);
   }
 }
