@@ -4,9 +4,16 @@
     <!-- <HelloWorld msg="Welcome to Your Vue.js + TypeScript App" /> -->
     <Table width="550" height="200" :columns="columns1" :data="data1"></Table>
     <!-- <Tree :data="data2"></Tree> -->
-    <Button>Default</Button>
-    <Button type="primary">Primary</Button>
-    <Button type="dashed">Primary</Button>
+    <div class="example">
+      <Button ghost="true">Default</Button>
+      <Button type="primary">Primary</Button>
+      <Button type="dashed">Primary</Button>
+      <Button type="text">text</Button>
+      <Button type="success">success</Button>
+      <Button type="info">info</Button>
+      <Button type="warning">warning</Button>
+      <Button type="error">error</Button>
+    </div>
   </div>
 </template>
 
@@ -169,7 +176,14 @@ export default class App extends Vue {
 }
 </script>
 
-<style lang="scss">
+<style lang="less">
+@import './styles/index.less';
+.example{
+  height: 200px;
+  width: 1000px;
+  background: rgb(190, 200, 200);
+  padding: 20px;
+}
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;

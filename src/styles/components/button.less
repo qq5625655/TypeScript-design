@@ -1,0 +1,75 @@
+/*
+避免编译:
+#main{
+  width:~'calc(300px-30px)';
+}
+
+
+#main{
+  width:calc(300px-30px);
+}
+
+结构： ~' 值 '
+
+变量拼串
+
+在下面例子中， 实现了不同的 transtion-delay、animation、@keyframes
+
+.judge(@i) when(@i=1){
+  @size:15px;
+}
+.judge(@i) when(@i>1){
+  @size:16px;
+}
+.loopAnimation(@i) when (@i<16) {
+  
+  .circle:nth-child(@{i}){
+      .judeg(@i);
+      border-radius:@size @size 0 0;
+      animation: ~"circle-@{i}" @duration infinite @ease;
+      transition-delay:~"@{i}ms";
+  }
+  @keyframes ~"circle-@{i}" {
+      // do something...
+  }
+  .loopAnimation(@i + 1);
+}
+
+*/
+@css-prefix: itu-;
+@btn-prefix-cls: ~'@{css-prefix}btn';
+.@{btn-prefix-cls} {
+  .btn();
+  .btn-default();
+  // 阴影渐渐退去
+  .active-btn-color(@primary-color);
+
+  &-primary {
+    .btn-primary();
+  }
+  &-dashed {
+    .btn-dashed();
+  }
+  &-text {
+    .btn-text();
+  }
+  &-success {
+    .btn-color-type(@success-color);
+  }
+  &-info{
+    .btn-color-type(@info-color);
+  }
+  &-warning{
+    .btn-color-type(@warning-color);
+  }
+  &-error{
+    .btn-color-type(@error-color);
+  }
+  &-ghost{
+    color: #fff;
+    background: transparent;
+    &:hover{
+        background: transparent;
+    }
+  }
+}
