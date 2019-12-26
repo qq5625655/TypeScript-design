@@ -5,11 +5,11 @@
     <Table width="550" height="200" :columns="columns1" :data="data1"></Table>
     <!-- <Tree :data="data2"></Tree> -->
     <div class="example">
-      <Button size="large" ghost="true">Default</Button>
-      <Button size="small" ghost="true" type="primary">Primary</Button>
-      <Button ghost="true" type="dashed">Primary</Button>
-      <Button ghost="true" type="text">text</Button>
-      <Button ghost="true" type="success">success</Button>
+      <Button disabled="true" size="large" ghost="true">Default</Button>
+      <Button icon="icon-home" disabled="true" size="small" ghost="true" type="primary">Primary</Button>
+      <Button icon="icon-search" ghost="true" type="dashed">Primary</Button>
+      <Button disabled="true" ghost="true" type="text">text</Button>
+      <Button disabled="true" ghost="true" type="success">success</Button>
       <Button ghost="true" type="info">info</Button>
       <Button ghost="true" type="warning">warning</Button>
       <Button ghost="true" type="error">error</Button>

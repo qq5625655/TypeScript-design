@@ -1,6 +1,7 @@
 <template>
-  <component :class="classes" :is="tagName">
-    <slot></slot>
+  <component :class="classes" :is="tagName" :disabled="disabled">
+    <Icon :class="'itu-icon ' + icon" v-if="icon && !loading"></Icon>
+    <span v-if="showSlot"><slot></slot></span>
   </component>
 </template>
 <script lang="ts">
@@ -27,12 +28,18 @@ export default class Button extends Vue {
   @Prop({ default: 'default' }) size!: string;
   @Prop({ default: 'default' }) type!: string;
   @Prop({ default: false }) ghost!: boolean;
+  @Prop({ default: false }) disabled!: boolean;
+  @Prop({ default: '' }) icon!: string;
+  @Prop({}) loading?: boolean;
   // private readonly buttonProps!: ButtonProps;
 
   mount() {
     // console.log('button', ButtonProps)
   }
-
+  get showSlot() {
+    // 老版slot用法
+    return !!this.$slots.default;
+  }
   get classes() {
     return [
       `${prefixCls}`,
@@ -40,6 +47,7 @@ export default class Button extends Vue {
       {
         [`${prefixCls}-${this.size}`]: this.size !== 'default',
         [`${prefixCls}-ghost`]: this.ghost
+        // [`${prefixCls}-icon-only`]: !!this.icon,
       }
     ];
   }

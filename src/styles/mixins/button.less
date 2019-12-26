@@ -8,8 +8,15 @@
   &:hover
       //&:focus
  {
-   // tint 颜色变换
+    // tint 颜色变换
     .button-color(tint(@color, 20%) ; tint(@background, 20%) ; tint(@border, 20%));
+  }
+  // 正常状态下的disable
+  &[disabled]{
+    &,
+    &:hover {
+      .button-color(@btn-disable-color; @btn-disable-bg; @btn-disable-border);
+    }
   }
 }
 
@@ -29,7 +36,10 @@
   height: 32px;
   margin-bottom: 0;
   text-align: center;
+  font-size: 14px;
   vertical-align: middle;
+  // 禁止用户选中文字，图片之类的东西。
+  user-select: none;
   touch-action: manipulation;
   cursor: pointer;
   font-weight: @btn-font-weight;
@@ -38,14 +48,21 @@
   .button-size(@btn-padding-base; @btn-font-size; @btn-border-radius);
   transition: color @transition-time linear, background-color @transition-time linear,
     border @transition-time linear, box-shadow @transition-time linear;
-  &-small{
+
+  &[disabled] {
+    cursor: @cursor-disabled;
+  }
+  &-small {
     .button-size(@btn-padding-small; @btn-font-size; @btn-border-radius-small);
     height: 24px;
   }
-  &-large{
+  &-large {
     .button-size(@btn-padding-large; @btn-font-size-large; @btn-border-radius);
     height: 40px;
   }
+//   &-icon-only{
+//     .btn-square(@btn-prefix-cls);
+// }
 }
 
 // default
@@ -53,7 +70,7 @@
   .button-variant(@btn-default-color; @btn-default-bg; @btn-default-border);
   &:hover,
   &:active {
-    // .button-color(tint(@primary-color, 20%); white; tint(@primary-color, 20%));
+
     .button-color(@primary-color, white, @primary-color);
   }
 }
@@ -61,11 +78,7 @@
 // primary
 .btn-primary() {
   .button-variant(@btn-primary-color; @btn-primary-bg; @primary-color);
-  // &:hover,
-  // &:active {
-  //   .button-color(@btn-primary-color, @primary-color, @primary-color);
 
-  // }
   .active-btn-color(@primary-color);
 }
 
@@ -87,10 +100,10 @@
   .button-variant(@btn-primary-color, @color, @color);
 }
 // ghost
-.btn-ghost-type(@color){
+.btn-ghost-type(@color) {
   color: @color;
-  &:hover{
+  &:hover {
     color: tint(@color, 20%);
     background: fade(tint(@color, 95%), 50%);
-}
+  }
 }
