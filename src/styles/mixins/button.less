@@ -11,8 +11,8 @@
     // tint 颜色变换
     .button-color(tint(@color, 20%) ; tint(@background, 20%) ; tint(@border, 20%));
   }
-  // 正常状态下的disable
-  &[disabled]{
+  // 正常状态下的disabled
+  &[disabled] {
     &,
     &:hover {
       .button-color(@btn-disable-color; @btn-disable-bg; @btn-disable-border);
@@ -25,15 +25,29 @@
     box-shadow: 0 0 0 2px fade(@color, 20%);
   }
 }
+// only icon not circle
+.btn-square(@btnClassName) {
+  // 制作正方形
+  // square(@btn-square-size);
+  .button-size(@btn-square-size; 0; @font-size-base + 2px; @btn-border-radius);
+  &.@{btnClassName}-large {
+    // square(@btn-square-size-large);
+    .button-size(@btn-square-size-large; 0; @btn-font-size-large + 2px; @btn-border-radius);
+  }
+  &.@{btnClassName}-small {
+    // square(@btn-square-size-small);
+    .button-size(@btn-square-size-small; 0; @font-size-base; @btn-border-radius);
+  }
+}
 
-.button-size(@padding; @font-size; @border-radius) {
+.button-size(@height; @padding; @font-size; @border-radius) {
+  height: @height;
   padding: @padding;
   font-size: @font-size;
   border-radius: @border-radius;
 }
 .btn() {
   display: inline-block;
-  height: 32px;
   margin-bottom: 0;
   text-align: center;
   font-size: 14px;
@@ -45,7 +59,10 @@
   font-weight: @btn-font-weight;
   border: 1px solid transparent;
   white-space: nowrap;
-  .button-size(@btn-padding-base; @btn-font-size; @btn-border-radius);
+  &-icon-only&-circle > .@{css-prefix-iconfont} {
+    vertical-align: baseline;
+  }
+  .button-size(@btn-height-base; @btn-padding-base; @btn-font-size; @btn-border-radius);
   transition: color @transition-time linear, background-color @transition-time linear,
     border @transition-time linear, box-shadow @transition-time linear;
 
@@ -53,21 +70,25 @@
     cursor: @cursor-disabled;
   }
   &-small {
-    .button-size(@btn-padding-small; @btn-font-size; @btn-border-radius-small);
-    height: 24px;
+    .button-size(@btn-height-small ; @btn-padding-small; @btn-font-size; @btn-border-radius-small);
   }
   &-large {
-    .button-size(@btn-padding-large; @btn-font-size-large; @btn-border-radius);
-    height: 40px;
+    .button-size(@btn-height-large; @btn-padding-large; @btn-font-size-large; @btn-border-radius);
   }
   // 图标
   > .@{css-prefix-iconfont} {
     line-height: @line-height-base;
     //vertical-align: middle;
-}
-//   &-icon-only{
-//     .btn-square(@btn-prefix-cls);
-// }
+  }
+  > span,
+  > i {
+    display: inline-block;
+    //vertical-align: middle;
+  }
+
+  &-icon-only {
+    .btn-square(@btn-prefix-cls);
+  }
 }
 
 // default
@@ -75,7 +96,6 @@
   .button-variant(@btn-default-color; @btn-default-bg; @btn-default-border);
   &:hover,
   &:active {
-
     .button-color(@primary-color, white, @primary-color);
   }
 }
@@ -110,5 +130,35 @@
   &:hover {
     color: tint(@color, 20%);
     background: fade(tint(@color, 95%), 50%);
+  }
+}
+// Circle for Icon
+.btn-circle(@btnClassName: itu-btn;) {
+  border-radius: @btn-circle-size;
+
+  &.@{btnClassName}-large {
+    border-radius: @btn-circle-size-large;
+  }
+
+  &.@{btnClassName}-size {
+    border-radius: @btn-circle-size-small;
+  }
+
+  &.@{btnClassName}-icon-only {
+    // .square(@btn-circle-size);
+    width: @btn-height-base;
+    .button-size(@btn-height-base; 0; @font-size-base + 2; 50%);
+
+    &.@{btnClassName}-large {
+      // .square(@btn-circle-size-large);
+      width: @btn-height-large;
+      .button-size(@btn-height-large; 0; @btn-font-size-large + 2; 50%);
+    }
+
+    &.@{btnClassName}-small {
+      // .square(@btn-circle-size-small);
+      width: @btn-height-small;
+      .button-size(@btn-height-small; 0; @font-size-base; 50%);
+    }
   }
 }

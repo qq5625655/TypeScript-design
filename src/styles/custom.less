@@ -5,8 +5,10 @@
 @font-size-base: 14px;
 @font-size-small: 12px;
 @font-size-large: 16px;
+@btn-font-weight: normal;
 @text-color: #515a6e;
 @cursor-disabled: not-allowed;
+@line-height-base: 1.5;
 
 // color  原色color
 @primary-color: #2d8cf0;
@@ -24,14 +26,16 @@
 @border-style-base: solid;
 
 //button
-@btn-font-weight: normal;
+@btn-height-base: 32px;
+@btn-height-large: 40px;
+@btn-height-small: 24px;
 
 @btn-padding-base: 5px 15px 6px;
 @btn-padding-large: 0 15px;
 @btn-padding-small: 0 7px;
 
 @btn-font-size: 12px;
-@btn-font-size-large: 14px;
+@btn-font-size-large: 16px;
 
 @btn-border-radius: 4px;
 @btn-border-radius-small: 3px;
@@ -50,5 +54,12 @@
 @btn-ghost-color: @text-color;
 @btn-ghost-bg: #fff;
 
+@btn-square-size: @btn-height-base;
+@btn-square-size-large: @btn-height-large;
+@btn-square-size-small: @btn-height-small;
+
+@btn-circle-size: @btn-height-base;
+@btn-circle-size-large: @btn-height-large;
+@btn-circle-size-small: @btn-height-small;
 // Animation
 @transition-time: 0.2s;

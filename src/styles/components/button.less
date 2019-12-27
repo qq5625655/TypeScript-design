@@ -42,9 +42,11 @@
   .btn();
   .btn-default();
   // 毗邻的第一个元素
-  & > .itu-icon + span, & > span + .itu-icon{
+  & > .itu-icon + span,
+  & > span + .itu-icon {
     margin-left: 4px;
-}
+    
+  }
   // 阴影渐渐退去
   .active-btn-color(@primary-color);
 
@@ -69,6 +71,12 @@
   &-error {
     .btn-color-type(@error-color);
   }
+
+  &-circle
+    {
+    .btn-circle(@btn-prefix-cls);
+  }
+
   &-ghost {
     color: #fff;
     background: transparent;
@@ -103,7 +111,6 @@
     .button-color(fade(#000, 25%), transparent, @btn-disable-border);
   }
   &-ghost&-text[disabled] {
-    .button-color(fade(#000, 25%) , transparent , transparent);
-
+    .button-color(fade(#000, 25%), transparent, transparent);
   }
 }

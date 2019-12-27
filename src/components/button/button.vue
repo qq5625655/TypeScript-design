@@ -31,6 +31,7 @@ export default class Button extends Vue {
   @Prop({ default: false }) disabled!: boolean;
   @Prop({ default: '' }) icon!: string;
   @Prop({}) loading?: boolean;
+  @Prop({}) shape?: string;
   // private readonly buttonProps!: ButtonProps;
 
   mount() {
@@ -46,8 +47,9 @@ export default class Button extends Vue {
       `${prefixCls}-${this.type}`,
       {
         [`${prefixCls}-${this.size}`]: this.size !== 'default',
-        [`${prefixCls}-ghost`]: this.ghost
-        // [`${prefixCls}-icon-only`]: !!this.icon,
+        [`${prefixCls}-${this.shape}`]: !!this.shape,
+        [`${prefixCls}-ghost`]: this.ghost,
+        [`${prefixCls}-icon-only`]: !this.showSlot && (!!this.icon || this.loading)
       }
     ];
   }

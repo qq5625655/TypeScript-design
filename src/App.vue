@@ -7,7 +7,7 @@
     <div class="example">
       <Button disabled="true" size="large" ghost="true">Default</Button>
       <Button icon="icon-home" disabled="true" size="small" ghost="true" type="primary">Primary</Button>
-      <Button icon="icon-search" ghost="true" type="dashed">Primary</Button>
+      <Button shape="circle" icon="icon-search" ghost="true" type="dashed"></Button>
       <Button disabled="true" ghost="true" type="text">text</Button>
       <Button disabled="true" ghost="true" type="success">success</Button>
       <Button ghost="true" type="info">info</Button>
