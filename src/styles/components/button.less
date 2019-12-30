@@ -45,7 +45,6 @@
   & > .itu-icon + span,
   & > span + .itu-icon {
     margin-left: 4px;
-    
   }
   // 阴影渐渐退去
   .active-btn-color(@primary-color);
@@ -72,11 +71,12 @@
     .btn-color-type(@error-color);
   }
 
-  &-circle
-    {
+  &-circle {
     .btn-circle(@btn-prefix-cls);
   }
-
+  &-group {
+    .btn-group(@btn-prefix-cls);
+  }
   &-ghost {
     color: #fff;
     background: transparent;

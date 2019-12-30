@@ -4,16 +4,20 @@
     <!-- <HelloWorld msg="Welcome to Your Vue.js + TypeScript App" /> -->
     <Table width="550" height="200" :columns="columns1" :data="data1"></Table>
     <!-- <Tree :data="data2"></Tree> -->
-    <div class="example">
-      <Button disabled="true" size="large" ghost="true">Default</Button>
-      <Button icon="icon-home" disabled="true" size="small" ghost="true" type="primary">Primary</Button>
-      <Button shape="circle" icon="icon-search" ghost="true" type="dashed"></Button>
-      <Button disabled="true" ghost="true" type="text">text</Button>
-      <Button disabled="true" ghost="true" type="success">success</Button>
-      <Button ghost="true" type="info">info</Button>
-      <Button ghost="true" type="warning">warning</Button>
-      <Button ghost="true" type="error">error</Button>
-    </div>
+    <!-- <div class="example"> -->
+    <Button>Default</Button>
+    <Button icon="icon-home" size="small" type="primary">Primary</Button>
+    <Button shape="circle" icon="icon-search" type="dashed"></Button>
+    <Button  type="text">text</Button>
+    <Button disabled="true" ghost="true" type="success">success</Button>
+    <Button type="info">info</Button>
+    <Button type="warning">warning</Button>
+    <Button type="error">error</Button>
+    <ButtonGroup>
+      <Button>Default</Button>
+      <Button icon="icon-home"  type="primary">Primary</Button>
+    </ButtonGroup>
+    <!-- </div> -->
   </div>
 </template>
 
@@ -22,12 +26,14 @@ import { Component, Vue } from 'vue-property-decorator';
 import HelloWorld from './components/HelloWorld.vue';
 import Table from '@/components/table/table.vue';
 import Button from '@/components/button/button.vue';
+import ButtonGroup from '@/components/button/buttonGroup.vue';
 import Tree from '@/views/tree.vue';
 @Component({
   components: {
     HelloWorld,
     Table,
     Button,
+    ButtonGroup,
     Tree
   }
 })

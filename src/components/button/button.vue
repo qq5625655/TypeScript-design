@@ -1,5 +1,6 @@
 <template>
-  <component :class="classes" :is="tagName" :disabled="disabled">
+  <component :class="classes" :is="tagName" :disabled="disabled" @click="handleClickLink">
+    <i class="itu-icon icon-spinner2" v-if="loading"></i>
     <Icon :class="'itu-icon ' + icon" v-if="icon && !loading"></Icon>
     <span v-if="showSlot"><slot></slot></span>
   </component>
@@ -65,6 +66,11 @@ export default class Button extends Vue {
 
   get tagName(): String {
     return 'button';
+  }
+  // 内置对象Event
+  private handleClickLink (event: Event ){
+
+    this.$emit('click', event);
   }
 }
 </script>

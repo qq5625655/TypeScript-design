@@ -5,7 +5,9 @@
 }
 .button-variant(@color; @background; @border) {
   .button-color(@color; @background; @border);
-  &:hover
+  &:hover,
+  &:active,
+  &:focus
       //&:focus
  {
     // tint 颜色变换
@@ -65,7 +67,12 @@
   .button-size(@btn-height-base; @btn-padding-base; @btn-font-size; @btn-border-radius);
   transition: color @transition-time linear, background-color @transition-time linear,
     border @transition-time linear, box-shadow @transition-time linear;
-
+  // 显示原本色
+  &,
+  &:active,
+  &:focus {
+    outline: 0;
+  }
   &[disabled] {
     cursor: @cursor-disabled;
   }
@@ -115,14 +122,15 @@
 // Text
 .btn-text() {
   .button-variant(@btn-ghost-color, transparent, transparent);
+  .active-btn-color(@primary-color);
   &:hover {
     .button-color(@primary-color, @btn-ghost-bg, transparent);
   }
-  .active-btn-color(@primary-color);
 }
 // 颜色按钮
 .btn-color-type(@color) {
   .button-variant(@btn-primary-color, @color, @color);
+  .active-btn-color(@color);
 }
 // ghost
 .btn-ghost-type(@color) {
@@ -161,4 +169,22 @@
       .button-size(@btn-height-small; 0; @font-size-base; 50%);
     }
   }
+}
+
+// group
+.button-group-base(@btnClassName) {
+  position: relative;
+  display: inline-block;
+  vertical-align: middle;
+  > .@{btnClassName} {
+    position: relative;
+    float: left;
+    &:hover,
+    &:active {
+      z-index: 2;
+    }
+  }
+}
+.btn-group(@btnClassName: ivu-btn) {
+  .button-group-base(@btnClassName);
 }
