@@ -8,14 +8,14 @@
     <Button>Default</Button>
     <Button icon="icon-home" size="small" type="primary">Primary</Button>
     <Button shape="circle" icon="icon-search" type="dashed"></Button>
-    <Button  type="text">text</Button>
+    <Button type="text">text</Button>
     <Button disabled="true" ghost="true" type="success">success</Button>
     <Button type="info">info</Button>
     <Button type="warning">warning</Button>
     <Button type="error">error</Button>
     <ButtonGroup>
       <Button>Default</Button>
-      <Button icon="icon-home"  type="primary">Primary</Button>
+      <Button icon="icon-home" type="primary">Primary</Button>
     </ButtonGroup>
     <!-- </div> -->
   </div>
