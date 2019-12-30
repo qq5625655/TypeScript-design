@@ -7,15 +7,30 @@
     <!-- <div class="example"> -->
     <Button>Default</Button>
     <Button icon="icon-home" size="small" type="primary">Primary</Button>
-    <Button shape="circle" icon="icon-search" type="dashed"></Button>
+    <Button icon="icon-search" type="dashed"></Button>
     <Button type="text">text</Button>
     <Button disabled="true" ghost="true" type="success">success</Button>
-    <Button type="info">info</Button>
+
     <Button type="warning">warning</Button>
     <Button type="error">error</Button>
-    <ButtonGroup>
+    <ButtonGroup size="large">
       <Button>Default</Button>
+      <Button type="info">info</Button>
       <Button icon="icon-home" type="primary">Primary</Button>
+    </ButtonGroup>
+    <ButtonGroup>
+      <Button>
+        <i class="itu-icon icon-arrow-left"></i>
+        Forward
+      </Button>
+      <Button>
+        Forward
+        <i class="itu-icon arrow-up-lef"></i>
+      </Button>
+    </ButtonGroup>
+    <ButtonGroup>
+      <Button icon="icon-home"> </Button>
+      <Button icon="icon-arrow-left"> </Button>
     </ButtonGroup>
     <!-- </div> -->
   </div>

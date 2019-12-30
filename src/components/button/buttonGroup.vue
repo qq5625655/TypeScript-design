@@ -14,12 +14,12 @@ export default class buttonGoup extends Vue {
   @Prop({ default: 'default' }) size!: string;
   get classes() {
     return [
-      `${prefixCls}`
-      // {
-      //   [`${prefixCls}-${this.size}`]: !!this.size,
-      //   [`${prefixCls}-${this.shape}`]: !!this.shape,
-      //   [`${prefixCls}-vertical`]: this.vertical
-      // }
+      `${prefixCls}`,
+      {
+        [`${prefixCls}-${this.size}`]: !!this.size
+        //   [`${prefixCls}-${this.shape}`]: !!this.shape,
+        //   [`${prefixCls}-vertical`]: this.vertical
+      }
     ];
   }
 }
