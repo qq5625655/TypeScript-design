@@ -36,11 +36,16 @@
 }
 
 */
-@css-prefix: itu-;
+
 @btn-prefix-cls: ~'@{css-prefix}btn';
 .@{btn-prefix-cls} {
   .btn();
   .btn-default();
+  // 毗邻的第一个元素
+  & > .itu-icon + span,
+  & > span + .itu-icon {
+    margin-left: 4px;
+  }
   // 阴影渐渐退去
   .active-btn-color(@primary-color);
 
@@ -65,6 +70,13 @@
   &-error {
     .btn-color-type(@error-color);
   }
+
+  &-circle {
+    .btn-circle(@btn-prefix-cls);
+  }
+  &-group {
+    .btn-group(@btn-prefix-cls);
+  }
   &-ghost {
     color: #fff;
     background: transparent;
@@ -72,6 +84,7 @@
       background: transparent;
     }
   }
+  // 幽灵属性单独设置
   &-ghost&-primary {
     .btn-ghost-type(@primary-color);
   }
@@ -86,5 +99,18 @@
   }
   &-ghost&-error {
     .btn-ghost-type(@error-color);
+  }
+  // 幽灵属性下的disable
+  &-ghost&-default[disabled],
+  &-ghost&-dashed[disabled],
+  &-ghost&-primary[disabled],
+  &-ghost&-info[disabled],
+  &-ghost&-success[disabled],
+  &-ghost&-warning[disabled],
+  &-ghost&-error[disabled] {
+    .button-color(fade(#000, 25%), transparent, @btn-disable-border);
+  }
+  &-ghost&-text[disabled] {
+    .button-color(fade(#000, 25%), transparent, transparent);
   }
 }
