@@ -121,3 +121,11 @@ div > strong { color:#f00; }
 p + p { color:#f00; }
 ```
 具体看[http://www.ruanyifeng.com/blog/2009/03/css_selectors.html]
+
+
+- 伪类与伪元素
+:not() 伪类可以将一个或多个以逗号分隔的选择器列表作为其参数。
+选择器中不得包含另一个否定选择符或 伪元素。
+:first-child 是伪类 ::befor ::after 是伪元素
+具体看:
+[http://www.alloyteam.com/2016/05/summary-of-pseudo-classes-and-pseudo-elements/]

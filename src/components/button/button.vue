@@ -68,8 +68,7 @@ export default class Button extends Vue {
     return 'button';
   }
   // 内置对象Event
-  private handleClickLink (event: Event ){
-
+  private handleClickLink(event: Event) {
     this.$emit('click', event);
   }
 }

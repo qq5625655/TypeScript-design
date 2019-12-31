@@ -31,13 +31,16 @@
 .btn-square(@btnClassName) {
   // 制作正方形
   // square(@btn-square-size);
+  width: @btn-square-size;
   .button-size(@btn-square-size; 0; @font-size-base + 2px; @btn-border-radius);
   &.@{btnClassName}-large {
     // square(@btn-square-size-large);
+    width: @btn-square-size-large;
     .button-size(@btn-square-size-large; 0; @btn-font-size-large + 2px; @btn-border-radius);
   }
   &.@{btnClassName}-small {
     // square(@btn-square-size-small);
+    width: @btn-square-size-small;
     .button-size(@btn-square-size-small; 0; @font-size-base; @btn-border-radius);
   }
 }
@@ -90,7 +93,7 @@
   > span,
   > i {
     display: inline-block;
-    //vertical-align: middle;
+    vertical-align: middle;
   }
 
   &-icon-only {
@@ -184,7 +187,34 @@
       z-index: 2;
     }
   }
+  > .@{btnClassName} >.@{btnClassName}
+  &-large {
+    & > .@{btnClassName} {
+      .button-size(@btn-height-large; @btn-padding-large; @btn-font-size-large; @btn-border-radius);
+    }
+  }
+  &-small {
+    & > .@{btnClassName} {
+      .button-size(@btn-height-small; @btn-padding-small; @btn-font-size; @btn-border-radius-small);
+      > .@{css-prefix-iconfont} {
+        font-size: @btn-font-size;
+      }
+    }
+  }
 }
 .btn-group(@btnClassName: ivu-btn) {
   .button-group-base(@btnClassName);
+  &:not(&-vertical) > .@{btnClassName}:first-child {
+    border-bottom-right-radius: 0;
+    border-top-right-radius: 0;
+  }
+  &:not(&-vertical) > .@{btnClassName}:last-child {
+    border-bottom-left-radius: 0;
+    border-top-left-radius: 0;
+  }
+  // :not() 伪类可以将一个或多个以逗号分隔的选择器列表作为其参数。
+  // 选择器中不得包含另一个否定选择符或 伪元素。
+  &:not(&-vertical) > .@{btnClassName}:not(:first-child):not(:last-child) {
+    border-radius: 0;
+  }
 }
