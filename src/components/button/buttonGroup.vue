@@ -12,13 +12,14 @@ const prefixCls = 'itu-btn-group';
 export default class buttonGoup extends Vue {
   @Prop({}) shape?: string;
   @Prop({ default: 'default' }) size!: string;
+  @Prop({ default: false }) vertical!: boolean;
   get classes() {
     return [
       `${prefixCls}`,
       {
-        [`${prefixCls}-${this.size}`]: !!this.size
-        //   [`${prefixCls}-${this.shape}`]: !!this.shape,
-        //   [`${prefixCls}-vertical`]: this.vertical
+        [`${prefixCls}-${this.size}`]: !!this.size,
+        [`${prefixCls}-${this.shape}`]: !!this.shape,
+        [`${prefixCls}-vertical`]: this.vertical
       }
     ];
   }
