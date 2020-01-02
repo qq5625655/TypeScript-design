@@ -40,6 +40,7 @@
       <Button type="primary" icon="icon-home"> </Button>
       <Button type="primary" icon="icon-arrow-left"> </Button>
     </ButtonGroup>
+    <Button to='/home'>32322</Button>
     <!-- </div> -->
   </div>
 </template>

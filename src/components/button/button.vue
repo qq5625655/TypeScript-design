@@ -33,6 +33,7 @@ export default class Button extends Vue {
   @Prop({ default: '' }) icon!: string;
   @Prop({}) loading?: boolean;
   @Prop({}) shape?: string;
+  @Prop({}) to?: string;
   // private readonly buttonProps!: ButtonProps;
 
   mount() {
@@ -63,9 +64,14 @@ export default class Button extends Vue {
 
     return style;
   }
-
+  get isHrefPattern(): boolean {
+    const { to } = this;
+    return !!to;
+  }
   get tagName(): String {
-    return 'button';
+    const { isHrefPattern } = this;
+
+    return isHrefPattern ? 'a' : 'button';
   }
   // 内置对象Event
   private handleClickLink(event: Event) {
