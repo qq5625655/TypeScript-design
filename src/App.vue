@@ -19,42 +19,26 @@
       <Button icon="icon-home" type="primary">Primary</Button>
     </ButtonGroup>
     <ButtonGroup>
-      <Button>
+      <Button type="primary">
         <i class="itu-icon icon-arrow-left"></i>
         Forward
       </Button>
-      <Button>
+      <Button type="primary">
         Forward
         <i class="itu-icon arrow-up-lef"></i>
       </Button>
     </ButtonGroup>
-    <ButtonGroup>
-      <Button icon="icon-home"> </Button>
-      <Button icon="icon-arrow-left"> </Button>
-    </ButtonGroup>
-    <ButtonGroup >
-      <Button icon="icon-home"> </Button>
-      <Button icon="icon-arrow-left"> </Button>
-    </ButtonGroup>
     <ButtonGroup shape="circle">
-        <Button type="primary">
-            <Icon type="icon-arrow-left"></Icon>
-            Backward
-        </Button>
-        <Button type="primary">
-            Forward
-            <Icon type="icon-arrow-right"></Icon>
-        </Button>
+      <Button icon="icon-home"> </Button>
+      <Button icon="icon-arrow-left"> </Button>
+    </ButtonGroup>
+    <ButtonGroup size="small" shape="circle">
+      <Button type="primary" icon="icon-home"> </Button>
+      <Button type="primary" icon="icon-arrow-left"> </Button>
     </ButtonGroup>
     <ButtonGroup vertical="true">
-        <Button type="primary">
-            <Icon type="icon-arrow-left"></Icon>
-            Backward
-        </Button>
-        <Button type="primary">
-            Forward
-            <Icon type="icon-arrow-right"></Icon>
-        </Button>
+      <Button type="primary" icon="icon-home"> </Button>
+      <Button type="primary" icon="icon-arrow-left"> </Button>
     </ButtonGroup>
     <!-- </div> -->
   </div>

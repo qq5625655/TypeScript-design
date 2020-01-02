@@ -64,14 +64,17 @@
         }
       }
     }
-    // .@{btn-prefix-cls}-group:not(.@{btn-prefix-cls}-group-vertical) & + .@{btn-prefix-cls}
     .@{btn-prefix-cls}-group:not(.@{btn-prefix-cls}-group-vertical) &:last-child:not(:first-child) {
+      // .@{btn-prefix-cls}-group:not(.@{btn-prefix-cls}-group-vertical) & + .@{btn-prefix-cls} {
       border-left-color: @btn-group-border;
       &[disabled] {
         border-left-color: @btn-default-border;
       }
     }
   }
+  &-group-vertical {
+    .btn-group-vertical(@btn-prefix-cls);
+}
   &-dashed {
     .btn-dashed();
   }

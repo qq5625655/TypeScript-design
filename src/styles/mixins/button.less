@@ -187,6 +187,18 @@
       z-index: 2;
     }
   }
+  & .@{btnClassName}-icon-only .itu-icon {
+    font-size: 13px;
+    //top: 1px;
+  }
+  &-large .@{btnClassName}-icon-only .itu-icon {
+    font-size: 15px;
+    //top: 2px;
+  }
+  &-small .@{btnClassName}-icon-only .itu-icon {
+    font-size: 12px;
+    //top: 0;
+  }
   &-circle .@{btnClassName} {
     border-radius: @btn-circle-size;
   }
@@ -195,6 +207,11 @@
       .button-size(@btn-height-large; @btn-padding-large; @btn-font-size-large; @btn-border-radius);
     }
   }
+
+  &-large&-circle .@{btnClassName} {
+    border-radius: @btn-circle-size-large;
+  }
+
   &-small {
     & > .@{btnClassName} {
       .button-size(@btn-height-small; @btn-padding-small; @btn-font-size; @btn-border-radius-small);
@@ -203,7 +220,22 @@
       }
     }
   }
+  &-small&-circle .@{btnClassName} {
+    border-radius: @btn-circle-size-small;
+  }
 }
+
+.button-group-vertical-base(@btnClassName) {
+  display: inline-block;
+  vertical-align: middle;
+  > .@{btnClassName} {
+      display: block;
+      width: 100%;
+      max-width: 100%;
+      float: none;
+  }
+}
+
 .btn-group(@btnClassName: ivu-btn) {
   .button-group-base(@btnClassName);
   &:not(&-vertical) > .@{btnClassName}:first-child {
@@ -220,7 +252,12 @@
     border-radius: 0;
   }
 }
+<<<<<<< HEAD
 
 .btn-group-vertical(@btnClassName: ivu-btn) {
   
+=======
+.btn-group-vertical(@btnClassName: ivu-btn){
+  .button-group-vertical-base(@btnClassName);
+>>>>>>> c23fce484f3245eb1dcc636bcab3ecdbbda6a9af
 }
