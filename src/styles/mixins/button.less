@@ -187,7 +187,9 @@
       z-index: 2;
     }
   }
-  > .@{btnClassName} >.@{btnClassName}
+  &-circle .@{btnClassName} {
+    border-radius: @btn-circle-size;
+  }
   &-large {
     & > .@{btnClassName} {
       .button-size(@btn-height-large; @btn-padding-large; @btn-font-size-large; @btn-border-radius);
@@ -217,4 +219,8 @@
   &:not(&-vertical) > .@{btnClassName}:not(:first-child):not(:last-child) {
     border-radius: 0;
   }
+}
+
+.btn-group-vertical(@btnClassName: ivu-btn) {
+  
 }

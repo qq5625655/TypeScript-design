@@ -32,6 +32,30 @@
       <Button icon="icon-home"> </Button>
       <Button icon="icon-arrow-left"> </Button>
     </ButtonGroup>
+    <ButtonGroup >
+      <Button icon="icon-home"> </Button>
+      <Button icon="icon-arrow-left"> </Button>
+    </ButtonGroup>
+    <ButtonGroup shape="circle">
+        <Button type="primary">
+            <Icon type="icon-arrow-left"></Icon>
+            Backward
+        </Button>
+        <Button type="primary">
+            Forward
+            <Icon type="icon-arrow-right"></Icon>
+        </Button>
+    </ButtonGroup>
+    <ButtonGroup vertical="true">
+        <Button type="primary">
+            <Icon type="icon-arrow-left"></Icon>
+            Backward
+        </Button>
+        <Button type="primary">
+            Forward
+            <Icon type="icon-arrow-right"></Icon>
+        </Button>
+    </ButtonGroup>
     <!-- </div> -->
   </div>
 </template>
