@@ -1,12 +1,21 @@
 <template>
-  <component :class="classes" :is="tagName" :disabled="disabled" @click="handleClickLink">
+  <component
+    :class="classes"
+    :is="tagName"
+    :disabled="disabled"
+    @click="handleClickLink"
+    v-bind="tagProps"
+  >
     <i class="itu-icon icon-spinner2" v-if="loading"></i>
-    <Icon :class="'itu-icon ' + icon" v-if="icon && !loading"></Icon>
+    <i :class="'itu-icon ' + icon" v-if="icon && !loading"></i>
     <span v-if="showSlot"><slot></slot></span>
   </component>
+
+
 </template>
 <script lang="ts">
 import { Component, Vue, Prop } from 'vue-property-decorator';
+// import  from 'vue-class-component';
 
 export interface ButtonProps {
   //strictPropertyInitialization 启用，确保类的非undefined属性已经在构造函数里初始化。
@@ -15,13 +24,22 @@ export interface ButtonProps {
   // disable! 断言这个是非null非undefined的类型断言，一会测试
   // ?表示可以为空
 }
-
+// 接口类型，接口与type的区别
 interface styleWidth {
   width: String;
 }
+export type AnchorButtonProps = {
+  href?: string;
+  target?: string;
+  linkUrl?: string;
+};
+export type NativeButtonProps = {
+  htmlType?: string;
+};
+
 const prefixCls = 'itu-btn';
 @Component({
-  name: 'button'
+  name: 'Button'
 })
 export default class Button extends Vue {
   //! 表示类型断言，非null非undefined
@@ -33,7 +51,7 @@ export default class Button extends Vue {
   @Prop({ default: '' }) icon!: string;
   @Prop({}) loading?: boolean;
   @Prop({}) shape?: string;
-  @Prop({}) to?: string;
+  @Prop({ default: 'button' }) htmlType!: string;
   // private readonly buttonProps!: ButtonProps;
 
   mount() {
@@ -65,13 +83,30 @@ export default class Button extends Vue {
     return style;
   }
   get isHrefPattern(): boolean {
-    const { to } = this;
+    const { to } = this.$attrs;
     return !!to;
   }
   get tagName(): String {
     const { isHrefPattern } = this;
 
     return isHrefPattern ? 'a' : 'button';
+  }
+  get tagProps() {
+    const { isHrefPattern } = this;
+    const { ...rest } = this.$props;
+    // const { rest } = this.$attrs;
+
+    if (isHrefPattern) {
+      const { linkUrl, target } = this.$attrs;
+      return { href: linkUrl, target };
+    } else {
+      // 断言，需要判断类型antd写法。
+      // const { htmlType } = rest as NativeButtonProps;
+
+      // 普通写法
+      const { htmlType } = rest;
+      return { type: htmlType };
+    }
   }
   // 内置对象Event
   private handleClickLink(event: Event) {

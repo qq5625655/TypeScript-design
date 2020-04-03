@@ -5,7 +5,7 @@
 </template>
 <script>
 export default {
-  name: 'CheckboxGroup',
+  name: "CheckboxGroup",
 
   props: {
     value: {
@@ -48,11 +48,11 @@ export default {
     updateModel(update) {
       if (this.$children && this.$children.length > 0) {
         const { value } = this;
-        this.$children.forEach((child) => {
+        this.$children.forEach(child => {
           // 将组件里面的数组改为一个数组
           child.model = value;
           if (update) {
-            child.currentValue = value.indexOf(child.label) >= 0;
+            child.currentValue = value.indexOf(child.value) >= 0;
             child.group = true;
           }
         });
@@ -71,14 +71,14 @@ export default {
     },
     change(data) {
       this.currentValue = data;
-      this.$emit('input', data);
+      this.$emit("input", data);
       // this.$emit("on-change", data);
       // this.dispatch("FormItem", "on-form-change", data);
-      this.dispatch('formItem', 'on-form-change');
+      this.dispatch("formItem","on-form-change");
     },
     dispatch: function(componentName, eventName, params) {
-      let parent = this.$parent || this.$root;
-      let name = parent.$options.name;
+      var parent = this.$parent || this.$root;
+      var name = parent.$options.name;
 
       while (parent && (!name || name !== componentName)) {
         parent = parent.$parent;
@@ -100,7 +100,7 @@ export default {
 };
 </script>
 <style lang="scss">
-.checkboxGroup-wrap {
-  overflow: hidden;
+.checkboxGroup-wrap{
+  overflow: auto;
 }
 </style>

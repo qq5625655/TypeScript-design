@@ -1,0 +1,31 @@
+.hover(@color: @input-hover-border-color) {
+  border-color: tint(@color, 20%);
+}
+.active(@color: @input-hover-border-color) {
+  border-color: tint(@color, 20%);
+  outline: 0;
+  box-shadow: 0 0 0 2px fade(@color, 20%);
+}
+.input() {
+  display: inline-block;
+  width: 100%;
+  height: @input-height-base;
+  line-height: @line-height-base;
+  padding: @input-padding-vertical-base @input-padding-horizontal;
+  font-size: @font-size-base;
+  border: 1px solid @input-border-color;
+  border-radius: @btn-border-radius;
+  color: @input-color;
+  background-color: @input-bg;
+  background-image: none;
+  position: relative;
+  cursor: text;
+  transition: border @transition-time @ease-in-out, background @transition-time @ease-in-out, box-shadow @transition-time @ease-in-out;
+  box-sizing: border-box;
+  &:hover{
+    .hover();
+  }
+  &:focus{
+    .active();
+  }
+}

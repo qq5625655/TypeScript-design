@@ -1,0 +1,126 @@
+@date-picker-prefix-cls: ~'@{css-prefix}date-picker';
+@picker-prefix-cls: ~'@{css-prefix}picker';
+@picker-panel-cls: ~'@{css-prefix}date-picker-body-panel';
+.@{date-picker-prefix-cls} {
+  position: relative;
+  display: inline-block;
+  line-height: normal;
+  font-size: 14px;
+  &-rel {
+    position: relative;
+  }
+  &-input {
+    .input();
+    display: inline-block;
+  }
+  &-panel-body-wrapper {
+    margin: 5px 0;
+    position: absolute;
+    top: 32px;
+    left: 0px;
+    background-color: @background-color-date-picker;
+    box-sizing: border-box;
+    border-radius: @btn-border-radius;
+    z-index: @zindex-select;
+    box-shadow: 0 1px 6px rgba(0, 0, 0, 0.2);
+  }
+  &-panel-body {
+    overflow: auto;
+    &-header {
+      height: 32px;
+      line-height: 32px;
+      text-align: center;
+      border-bottom: 1px solid @border-color-split;
+      position: relative;
+      padding: 0 10px;
+      & > span {
+        color: #666;
+        cursor: pointer;
+        position: absolute;
+
+        display: inline-block;
+        font-weight: 700;
+        text-align: center;
+        padding: 0 7px;
+
+        font-size: 16px;
+        transition: color 0.2s ease-in-out;
+        &:hover {
+          color: @primary-color;
+        }
+      }
+      .pre-year-btn {
+        left: 6px;
+      }
+      .pre-month-btn {
+        left: 25px;
+      }
+      .next-month-btn {
+        right: 25px;
+      }
+      .next-year-btn {
+        right: 6px;
+      }
+      .text {
+        position: relative;
+        width: auto;
+        height: auto;
+
+        font-size: 12px;
+        padding: 0;
+      }
+      .text + .text {
+        margin-left: 5px;
+      }
+    }
+    &-content {
+      float: left;
+      width: 196px;
+      margin: 10px;
+      span {
+        display: inline-block;
+        width: 24px;
+        height: 24px;
+        line-height: 24px;
+        text-align: center;
+        margin: 2px;
+        cursor: pointer;
+        transition: background-color 0.2s ease-in-out;
+      }
+    }
+    &-cell-head {
+      & > span {
+        color: @btn-disable-color;
+      }
+    }
+    &-cell-body {
+      & > span {
+        &:hover {
+          background: @background-color-base-date;
+        }
+      }
+    }
+    &-cell-disabled {
+      color: @btn-disable-color;
+    }
+    &-cell-today {
+      position: relative;
+      &:after {
+        content: '';
+        display: block;
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        background: @primary-color;
+        position: absolute;
+        top: 1px;
+        right: 1px;
+      }
+    }
+    &-cell-selected,
+    &-cell-selected:hover {
+      background: @primary-color;
+      color: #fff;
+    }
+  }
+}

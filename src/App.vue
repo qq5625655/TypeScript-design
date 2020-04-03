@@ -1,11 +1,17 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png" />
+    <!-- <img alt="Vue logo" src="./assets/logo.png" /> -->
     <!-- <HelloWorld msg="Welcome to Your Vue.js + TypeScript App" /> -->
-    <Table width="550" height="200" :columns="columns1" :data="data1"></Table>
+    <!-- <Table width="550" height="200" :columns="columns1" :data="data1"></Table> -->
+    <!-- <yuTable :columns="columns1" :data="data1">
+      <template slot-scope="{ item, index }" slot="action">
+            <Button type="primary" size="small" style="margin-right: 5px" @click="show(index)">View</Button>
+            <Button type="error" size="small" @click="remove(index)">Delete</Button>
+        </template>
+    </!-->
     <!-- <Tree :data="data2"></Tree> -->
     <!-- <div class="example"> -->
-    <Button>Default</Button>
+    <!-- <Button>Default</Button>
     <Button icon="icon-home" size="small" type="primary">Primary</Button>
     <Button icon="icon-search" type="dashed"></Button>
     <Button type="text">text</Button>
@@ -23,10 +29,7 @@
         <i class="itu-icon icon-arrow-left"></i>
         Forward
       </Button>
-      <Button type="primary">
-        Forward
-        <i class="itu-icon arrow-up-lef"></i>
-      </Button>
+     
     </ButtonGroup>
     <ButtonGroup shape="circle">
       <Button icon="icon-home"> </Button>
@@ -40,8 +43,19 @@
       <Button type="primary" icon="icon-home"> </Button>
       <Button type="primary" icon="icon-arrow-left"> </Button>
     </ButtonGroup>
-    <Button to='/home'>32322</Button>
-    <!-- </div> -->
+    <Button to="/components/icon-en" >32322</Button> -->
+
+     <!-- <Button type="primary">
+        Forward
+        <i class="itu-icon  icon-arrow-left"></i>
+      </!-->
+    <div style="width:300px" class="test_menu">
+      <Menu mode="vertical" active-name="3333">
+        <MenuItem name=''>
+         </MenuItem>
+        <MenuItem name=''></MenuItem>
+    </Menu>
+    </div>
   </div>
 </template>
 
@@ -49,16 +63,22 @@
 import { Component, Vue } from 'vue-property-decorator';
 import HelloWorld from './components/HelloWorld.vue';
 import Table from '@/components/table/table.vue';
+import yuTable from '@/components/yuTable/table.vue';
 import Button from '@/components/button/button.vue';
 import ButtonGroup from '@/components/button/buttonGroup.vue';
 import Tree from '@/views/tree.vue';
+import Menu from '@/components/menu/menu.vue';
+import MenuItem from '@/components/menu/menu-item.vue';
 @Component({
   components: {
     HelloWorld,
     Table,
     Button,
     ButtonGroup,
-    Tree
+    Tree,
+    Menu,
+    MenuItem,
+    yuTable
   }
 })
 export default class App extends Vue {
@@ -66,42 +86,46 @@ export default class App extends Vue {
     return {
       columns1: [
         {
-          type: 'selection',
           width: 60,
-          align: 'center'
+          align: "center"
         },
         {
-          title: 'Name',
-          key: 'name',
-          width: 100
-          // fixed: "left"
-        },
-        {
-          title: 'Age',
-          key: 'age',
+          title: "Name",
+          key: "name",
           width: 100
         },
         {
-          title: 'Province',
-          key: 'province',
+          title: "Age",
+          key: "age",
+          width: 100,
+          sortable: true
+        },
+        {
+          title: "Province",
+          key: "province",
           width: 100
         },
         {
-          title: 'City',
-          key: 'city',
+          title: "City",
+          key: "city",
           width: 100
         },
         {
-          title: 'Address',
-          key: 'address',
+          title: "Address",
+          key: "address",
           width: 200
         },
         {
-          title: 'Postcode',
-          key: 'zip',
+          title: "Postcode",
+          key: "zip",
           width: 100
-          // fixed:'right',
-        }
+        },
+        {
+          title: 'action',
+          slot: 'action',
+          type: "slot",
+          width: 150,
+        },
       ],
       data1: [
         {
@@ -203,11 +227,18 @@ export default class App extends Vue {
       ]
     };
   }
+  // remove (index:number) {
+  //   this.data1.splice(index, 1);
+  //   console.log('this', this);
+  // }
 }
 </script>
 
 <style lang="less">
-@import './styles/index.less';
+// @import './styles/index.less';
+// .test_menu{
+//   width: 100px;
+// }
 .example {
   height: 200px;
   width: 1000px;
