@@ -37,13 +37,11 @@
         color: #666;
         cursor: pointer;
         position: absolute;
-
         display: inline-block;
         font-weight: 700;
         text-align: center;
         padding: 0 7px;
-
-        font-size: 16px;
+        font-size: 20px;
         transition: color 0.2s ease-in-out;
         &:hover {
           color: @primary-color;
@@ -93,13 +91,24 @@
         color: @btn-disable-color;
       }
     }
-    &-cell-body {
+    &-cell-day, &-cell-month, &-cell-year {
       & > span {
         &:hover {
           background: @background-color-base-date;
         }
       }
     }
+    &-cell-month, &-cell-year {
+      & > span {
+        width: 40px;
+        height: 28px;
+        line-height: 28px;
+        margin: 10px 12px;
+        border-radius: @btn-border-radius-small;
+      
+      }
+    }
+
     &-cell-disabled {
       color: @btn-disable-color;
     }
@@ -121,6 +130,12 @@
     &-cell-selected:hover {
       background: @primary-color;
       color: #fff;
+    }
+
+    &-cell-today&-cell-selected {
+      &:after {
+        background: #fff;
+      }
     }
   }
 }

@@ -1,27 +1,21 @@
 <template>
-  <div :class="[datePickerPanelClasses + '-cell-day']">
+  <div :class="[datePickerPanelClasses + '-cell-month']">
     <span
-          @click="handleClick(item)"
-          :class="getDaysClasses(item)"
-          v-for="(item, key) in cells"
-          :key="item.year + key"
-        >
-          {{ item.day }}
-        </span>
+      @click="handleClick(item)"
+      :class="getDaysClasses(item)"
+      v-for="(item, key) in cells"
+      :key="key"
+    >
+      {{ item.monthTitle }}
+    </span>
   </div>
 </template>
 
 <script lang="ts">
 const prefixClsPanel = 'itu-date-picker-panel';
-interface days {
-  day: number;
+interface months {
   month: number;
   year: number;
-  disabled?: boolean;
-  today?: boolean;
-  selected?: boolean;
-  pre?: boolean;
-  next?: boolean;
 }
 interface classes {
   [index: string]: any;
@@ -31,35 +25,28 @@ import datepicker from './datepicker.vue';
 
 @Component({
   name: 'DateTable'
-
 })
 export default class DateTable extends Vue {
-  
-
   @Prop([Array]) cells!: Array<Date>;
-  @Prop ({type: Function}) setSelected!: Function
-  @Prop ({type: Function }) handleClick!: Function
+  @Prop({ type: Function }) setSelected!: Function;
+  @Prop({ type: Function }) handleClick!: Function;
 
   get datePickerPanelClasses(): string {
     return `${prefixClsPanel}-body`;
   }
 
-  handlePickCell(){
-
-  }
-
-  getDaysClasses(item: days): classes {
+  getDaysClasses(item: months): classes {
     // methods和computed都依赖组建内部的值和props，当发生改变时候就会执行相应的方法
-    
-    let currentTime = new Date(item.year, item.month, item.day);
+
+    let currentTime = new Date(item.year, item.month, 1);
 
     return [
       `${prefixClsPanel}-cell`,
       {
-        [`${prefixClsPanel}-body-cell-selected`]: this.setSelected(item),
+        [`${prefixClsPanel}-body-cell-selected`]: this.setSelected(item)
         // || cell.start || cell.end,
-        [`${prefixClsPanel}-body-cell-disabled`]: item.disabled,
-        [`${prefixClsPanel}-body-cell-today`]: item.today
+        // [`${prefixClsPanel}-body-cell-disabled`]: item.disabled,
+        // [`${prefixClsPanel}-body-cell-today`]: item.today
         // [`${prefixClsPanel}-cell-prev-month`]: cell.type === 'prevMonth',
         // [`${prefixClsPanel}-cell-next-month`]: cell.type === 'nextMonth',
         // [`${prefixClsPanel}-cell-week-label`]: cell.type === 'weekLabel',
@@ -68,7 +55,5 @@ export default class DateTable extends Vue {
       }
     ];
   }
-
-  
 }
 </script>
