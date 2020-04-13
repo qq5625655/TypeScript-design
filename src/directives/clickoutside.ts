@@ -6,7 +6,7 @@ import { DirectiveBinding } from 'vue/types/options';
 export default {
   bind(el: HTMLElement | propertyValue, binding: DirectiveBinding) {
     function documentHandler(e: Event) {
-      console.log('el', el, (e.target as Element).parentElement!.className);
+      
       // 给整个document添加click事件,contains如果e.target元素是el元素的子孙元素的话
       if (e.target === el || (el as Element).contains(e.target as Element)) {
         // 如果点击的区域是使用了该指令的DOM元素的内部，那么不做任何处理

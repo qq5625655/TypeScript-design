@@ -6,7 +6,7 @@
       v-for="(item, key) in cells"
       :key="key"
     >
-      {{ item.monthTitle }}
+      {{ item }}
     </span>
   </div>
 </template>
@@ -24,9 +24,9 @@ import { Component, Vue, Prop, PropSync, Watch, Emit } from 'vue-property-decora
 import datepicker from './datepicker.vue';
 
 @Component({
-  name: 'MonthTable'
+  name: 'YearTable'
 })
-export default class MonthTable extends Vue {
+export default class YearTable extends Vue {
   @Prop([Array]) cells!: Array<Date>;
   @Prop({ type: Function }) setSelected!: Function;
   @Prop({ type: Function }) handleClick!: Function;
@@ -38,7 +38,7 @@ export default class MonthTable extends Vue {
   getDaysClasses(item: months): classes {
     // methods和computed都依赖组建内部的值和props，当发生改变时候就会执行相应的方法
 
-    let currentTime = new Date(item.year, item.month, 1);
+    let currentTime = new Date(item.year, 1, 1);
 
     return [
       `${prefixClsPanel}-cell`,

@@ -3,7 +3,7 @@
     <div :class="[datePickerPanelClasses + '-header']">
       <span class="pre-year-btn">«</span>
       <span @click="preMonth" class="pre-month-btn">‹</span>
-      <span class="text">{{ year }}</span>
+      <span @click="changeTableType('year')" class="text">{{ year }}</span>
       <span @click="changeTableType('month')" class="text">{{ monthHead[month] }}</span>
       <span @click="nextMonth" class="next-month-btn">›</span>
       <span class="next-year-btn" @click="year++">»</span>
@@ -49,9 +49,10 @@ import { Component, Vue, Prop, PropSync, Watch, Emit } from 'vue-property-decora
 import datepicker from './datepicker.vue';
 import dateTable from './datetable.vue';
 import monthTable from './monthTable.vue';
+import yearTable from './yearTable.vue';
 @Component({
   name: 'datepickerCalendar',
-  components: { dateTable, monthTable }
+  components: { dateTable, monthTable, yearTable }
   // directives: { clickOutside  }
 })
 export default class datepickerCalendar extends Vue {
@@ -75,6 +76,20 @@ export default class datepickerCalendar extends Vue {
 
   get datePickerPanelClasses(): string {
     return `${prefixClsPanel}-body`;
+  }
+  get yearTitleStart(): number{
+    return parseInt(String(this.year / 10), 10)*10;
+  }
+  get yearTitleEnd(): number{
+    return this.yearTitleStart + 10;
+  }
+  get years ():number[] {
+      const arr = []
+      let start = this.yearTitleStart - 1
+      while (arr.length < 12) {
+        arr.push(start++)
+      }
+      return arr
   }
   get days(): days[] {
     // this.day;
@@ -141,11 +156,14 @@ export default class datepickerCalendar extends Vue {
   }
   get cells(): Array<any>{
     let array = [];
-    if(this.pickerTable === 'date-table'){
-      array = this.days
-    }else {
+    if(this.pickerTable === 'year-table'){
+      array = this.years;
+    }else if (this.pickerTable === 'month-table'){
       array = this.months;
+    }else {
+      array = this.days
     }
+    
     return array;
   }
   // item在第三层，value在第二层
@@ -156,9 +174,11 @@ export default class datepickerCalendar extends Vue {
     if(this.pickerTable === 'date-table'){
       let currentTime = new Date(item.year, item.month, item.day);
       flag = transform(this.value) === transform(currentTime)
-    }else {
-      // console.log('item', item, );
+    }else if(this.pickerTable === 'month-table'){
+      
       flag = item.month ===  this.month;
+    }else {
+      flag = this.year === item;
     }
     return flag;
   }
@@ -185,26 +205,35 @@ export default class datepickerCalendar extends Vue {
       this.year++;
     }
   }
+  setMonth(value:number){
+    this.month = value
+  }
   handlePick(){
     if(this.pickerTable !== this.getTableType(this.selectionMode)){
+      
         if(this.pickerTable === 'year-table'){
           this.changeTableType('month');
-        }
-        if(this.pickerTable === 'month-table'){
+           
+        }else if (this.pickerTable === 'month-table'){
           this.changeTableType('date');
         }
+        
       return false;
     }
     return true
   }
   handleClick(item: any) {
+    if(this.pickerTable === 'month-table'){
+       
+      this.month = item.month;
+    }
     let flag =  this.handlePick();
     if(!flag) {
-       console.log('flag', flag);
       return;
     }
+    
     let value = new Date(item.year || this.year, item.month || this.month, item.day|| this.day);
-    console.log('flag22', flag);
+    
     
     item && item.next && this.nextMonth();
     item && item.pre && this.preMonth();

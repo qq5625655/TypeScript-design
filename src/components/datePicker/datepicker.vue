@@ -75,7 +75,10 @@ export default class DatePicker extends Vue {
     return dateType;
   }
 
- 
+  handleClose() {
+    
+    this.visible = false;
+  }
   getTableType(type: string): string {
     return `${type}-table`;
   }
@@ -98,7 +101,7 @@ export default class DatePicker extends Vue {
     // 类型断言，断言数组0肯定有值
 
     this.$emit('input', this.getValue());
-    // this.handleClose();
+    this.handleClose();
   }
   handleFocus(e: Event) {
     this.visible = true;
