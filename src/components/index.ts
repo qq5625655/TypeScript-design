@@ -1,5 +1,3 @@
-
-
 import Menu from './menu';
 import Button from './button';
 import Checkbox from './checkbox';
@@ -8,7 +6,6 @@ import Checkbox from './checkbox';
 interface components {
   [index: string]: any;
 }
- 
 
 // const yuButton = Button.Button;
 // const yuButtonGroup = Button.ButtonGroup;

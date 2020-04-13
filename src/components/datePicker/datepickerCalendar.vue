@@ -1,7 +1,7 @@
 <template>
   <div :class="datePickerPanelClasses">
     <div :class="[datePickerPanelClasses + '-header']">
-      <span class="pre-year-btn">«</span>
+      <span class="pre-year-btn" @click="year--">«</span>
       <span @click="preMonth" class="pre-month-btn">‹</span>
       <span @click="changeTableType('year')" class="text">{{ year }}</span>
       <span @click="changeTableType('month')" class="text">{{ monthHead[month] }}</span>
@@ -38,7 +38,7 @@ interface days {
   next?: boolean;
 }
 interface months {
-  month:number;
+  month: number;
   year: number;
   monthTitle: string;
 }
@@ -77,19 +77,19 @@ export default class datepickerCalendar extends Vue {
   get datePickerPanelClasses(): string {
     return `${prefixClsPanel}-body`;
   }
-  get yearTitleStart(): number{
-    return parseInt(String(this.year / 10), 10)*10;
+  get yearTitleStart(): number {
+    return parseInt(String(this.year / 10), 10) * 10;
   }
-  get yearTitleEnd(): number{
+  get yearTitleEnd(): number {
     return this.yearTitleStart + 10;
   }
-  get years ():number[] {
-      const arr = []
-      let start = this.yearTitleStart - 1
-      while (arr.length < 12) {
-        arr.push(start++)
-      }
-      return arr
+  get years(): number[] {
+    const arr = [];
+    let start = this.yearTitleStart - 1;
+    while (arr.length < 12) {
+      arr.push(start++);
+    }
+    return arr;
   }
   get days(): days[] {
     // this.day;
@@ -139,51 +139,51 @@ export default class datepickerCalendar extends Vue {
         next: true
       });
     }
-    
+
     return array;
   }
   get months(): months[] {
     let array = [];
     for (let i = 0; i < this.monthHead.length; i++) {
-       array.push({
-         month: i,
-         year: this.year,
-         monthTitle: this.monthHead[i],
-       })
-      
+      array.push({
+        month: i,
+        year: this.year,
+        monthTitle: this.monthHead[i]
+      });
     }
     return array;
   }
-  get cells(): Array<any>{
+  get cells(): Array<any> {
     let array = [];
-    if(this.pickerTable === 'year-table'){
+    if (this.pickerTable === 'year-table') {
       array = this.years;
-    }else if (this.pickerTable === 'month-table'){
+    } else if (this.pickerTable === 'month-table') {
       array = this.months;
-    }else {
-      array = this.days
+    } else {
+      array = this.days;
     }
-    
+
     return array;
   }
   // item在第三层，value在第二层
   setSelected(item: any): boolean {
-    let flag:boolean = false;
+    let flag: boolean = false;
     let transform = this.$parent.transformValue;
-    
-    if(this.pickerTable === 'date-table'){
+
+    if (this.pickerTable === 'date-table') {
       let currentTime = new Date(item.year, item.month, item.day);
-      flag = transform(this.value) === transform(currentTime)
-    }else if(this.pickerTable === 'month-table'){
+      flag = transform(this.value) === transform(currentTime);
+    } else if (this.pickerTable === 'month-table') {
+      let currentMonth = new Date(item.year, item.month, 1);
       
-      flag = item.month ===  this.month;
-    }else {
+      flag = transform(currentMonth, 'YYYY-MM') === transform(this.value, 'YYYY-MM');
+    } else {
       flag = this.year === item;
     }
     return flag;
   }
-  changeTableType(value: string){
-     this.pickerTable = this.getTableType(value);
+  changeTableType(value: string) {
+    this.pickerTable = this.getTableType(value);
   }
   getTableType(type: string): string {
     return `${type}-table`;
@@ -205,36 +205,32 @@ export default class datepickerCalendar extends Vue {
       this.year++;
     }
   }
-  setMonth(value:number){
-    this.month = value
+  setMonth(value: number) {
+    this.month = value;
   }
-  handlePick(){
-    if(this.pickerTable !== this.getTableType(this.selectionMode)){
-      
-        if(this.pickerTable === 'year-table'){
-          this.changeTableType('month');
-           
-        }else if (this.pickerTable === 'month-table'){
-          this.changeTableType('date');
-        }
-        
+  handlePick() {
+    if (this.pickerTable !== this.getTableType(this.selectionMode)) {
+      if (this.pickerTable === 'year-table') {
+        this.changeTableType('month');
+      } else if (this.pickerTable === 'month-table') {
+        this.changeTableType('date');
+      }
+
       return false;
     }
-    return true
+    return true;
   }
   handleClick(item: any) {
-    if(this.pickerTable === 'month-table'){
-       
+    if (this.pickerTable === 'month-table') {
       this.month = item.month;
     }
-    let flag =  this.handlePick();
-    if(!flag) {
+    let flag = this.handlePick();
+    if (!flag) {
       return;
     }
-    
-    let value = new Date(item.year || this.year, item.month || this.month, item.day|| this.day);
-    
-    
+
+    let value = new Date(item.year || this.year, item.month || this.month, item.day || this.day);
+
     item && item.next && this.nextMonth();
     item && item.pre && this.preMonth();
 

@@ -11,12 +11,7 @@
     <transition name="transition-drop">
       <div v-show="visible" :class="classes">
         <!-- <component v-model="dates[0]" :is="getTableType(selectionMode)"></component> -->
-        <datepickerCalendar
-          v-model="dates[0]"
-          :selectionMode="selectionMode"
-          ref="pickerPanel"
-        >
-
+        <datepickerCalendar v-model="dates[0]" :selectionMode="selectionMode" ref="pickerPanel">
         </datepickerCalendar>
       </div>
     </transition>
@@ -76,7 +71,6 @@ export default class DatePicker extends Vue {
   }
 
   handleClose() {
-    
     this.visible = false;
   }
   getTableType(type: string): string {
@@ -142,7 +136,8 @@ export default class DatePicker extends Vue {
       // s: seconds,
       // S: milliseconds
     };
-    let str = this.format.replace(/Y+|M+|D+|H+|h+|m+|s+|S+/g, (str: string) => {
+    let formatValue = format || this.format;
+    let str = formatValue.replace(/Y+|M+|D+|H+|h+|m+|s+|S+/g, (str: string) => {
       return map[str];
     });
 

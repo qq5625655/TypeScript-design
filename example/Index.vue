@@ -6,15 +6,12 @@
         <yuMenu active-name="introduction" mode="vertical">
           <yuMenuItem to="/introduction" name="introduction">
             简介
-            
           </yuMenuItem>
           <yuMenuItem to="/button" name="button">
             Button按钮
-            
           </yuMenuItem>
           <yuMenuItem to="/checkbox" name="checkbox">
             Checkbox按钮
-            
           </yuMenuItem>
         </yuMenu>
       </div>
@@ -23,10 +20,7 @@
       </div>
     </div>
     <div class="test">
-      <DatePicker v-model="date" :test="false">
-      
-    </DatePicker>
-
+      <DatePicker v-model="date" :test="false"> </DatePicker>
     </div>
   </div>
 </template>
@@ -36,20 +30,17 @@ import DatePicker from '../src/components/datePicker/datepicker.vue';
 export default {
   components: {
     BaseHead,
-    DatePicker,
+    DatePicker
   },
-  data(){
-    return{
-      date: '',
-       
-       
-    }
-  },
-  
+  data() {
+    return {
+      date: ''
+    };
+  }
 };
 </script>
 <style scoped>
-.test{
+.test {
   width: 100%;
   margin-left: 100px;
 }

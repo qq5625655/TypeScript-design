@@ -45,16 +45,15 @@
     </ButtonGroup>
     <Button to="/components/icon-en" >32322</Button> -->
 
-     <!-- <Button type="primary">
+    <!-- <Button type="primary">
         Forward
         <i class="itu-icon  icon-arrow-left"></i>
       </!-->
     <div style="width:300px" class="test_menu">
       <Menu mode="vertical" active-name="3333">
-        <MenuItem name=''>
-         </MenuItem>
-        <MenuItem name=''></MenuItem>
-    </Menu>
+        <MenuItem name=""> </MenuItem>
+        <MenuItem name=""></MenuItem>
+      </Menu>
     </div>
   </div>
 </template>
@@ -87,45 +86,45 @@ export default class App extends Vue {
       columns1: [
         {
           width: 60,
-          align: "center"
+          align: 'center'
         },
         {
-          title: "Name",
-          key: "name",
+          title: 'Name',
+          key: 'name',
           width: 100
         },
         {
-          title: "Age",
-          key: "age",
+          title: 'Age',
+          key: 'age',
           width: 100,
           sortable: true
         },
         {
-          title: "Province",
-          key: "province",
+          title: 'Province',
+          key: 'province',
           width: 100
         },
         {
-          title: "City",
-          key: "city",
+          title: 'City',
+          key: 'city',
           width: 100
         },
         {
-          title: "Address",
-          key: "address",
+          title: 'Address',
+          key: 'address',
           width: 200
         },
         {
-          title: "Postcode",
-          key: "zip",
+          title: 'Postcode',
+          key: 'zip',
           width: 100
         },
         {
           title: 'action',
           slot: 'action',
-          type: "slot",
-          width: 150,
-        },
+          type: 'slot',
+          width: 150
+        }
       ],
       data1: [
         {
