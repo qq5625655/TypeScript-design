@@ -19,18 +19,15 @@
         <router-view></router-view>
       </div>
     </div>
-    <div class="test">
-      <DatePicker v-model="date" :test="false"> </DatePicker>
-    </div>
   </div>
 </template>
 <script>
 import BaseHead from './BaseHead.vue';
-import DatePicker from '../src/components/datePicker/datepicker.vue';
+// import DatePicker from '../src/components/datePicker/datepicker.vue';
 export default {
   components: {
     BaseHead,
-    DatePicker
+    // DatePicker
   },
   data() {
     return {

@@ -11,9 +11,10 @@ export default {
         // 如果点击的区域是使用了该指令的DOM元素的内部，那么不做任何处理
         return;
       }
-      
-      let ElementClassName =
-        (e.target as Element).parentElement? (e.target as Element).parentElement!.className:''
+
+      let ElementClassName = (e.target as Element).parentElement
+        ? (e.target as Element).parentElement!.className
+        : '';
       // 对日期组件进行监听。
       if (
         e.target === el ||

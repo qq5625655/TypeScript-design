@@ -1,6 +1,7 @@
 import Menu from './menu';
 import Button from './button';
 import Checkbox from './checkbox';
+import DatePicker from './datePicker';
 // console.log('yuButton', yuButton);
 // 定义接口
 interface components {
@@ -16,7 +17,8 @@ const components: components = {
   yuButton: Button.Button,
   yuButtonGroup: Button.ButtonGroup,
   yuCheckbox: Checkbox.Checkbox,
-  yuCheckboxGroup: Checkbox.CheckboxGroup
+  yuCheckboxGroup: Checkbox.CheckboxGroup,
+  yuDatePicker: DatePicker.DatePicker
 };
 
 export default {
