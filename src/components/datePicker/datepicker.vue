@@ -1,5 +1,5 @@
 <template>
-  <div :class="wrapperClasses" v-click-outside.capture="handleClose">
+  <div :class="wrapperClasses" v-click-outside="handleClose">
     <div :class="[prefixCls + '-rel']">
       <input
         :value="value"

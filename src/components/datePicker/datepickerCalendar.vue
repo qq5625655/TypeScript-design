@@ -1,12 +1,14 @@
 <template>
   <div :class="datePickerPanelClasses">
     <div :class="[datePickerPanelClasses + '-header']">
-      <span class="pre-year-btn" @click="year--">«</span>
-      <span @click="preMonth" class="pre-month-btn">‹</span>
-      <span @click="changeTableType('year')" class="text">{{ year }}</span>
-      <span @click="changeTableType('month')" class="text">{{ monthHead[month] }}</span>
-      <span @click="nextMonth" class="next-month-btn">›</span>
-      <span class="next-year-btn" @click="year++">»</span>
+      <span class="pre-year-btn" @click="preYear">«</span>
+      <span v-show="pickerTable === 'date-table'" @click="preMonth" class="pre-month-btn">‹</span>
+      <span @click="changeTableType('year')" class="text">{{ yearTitle }}</span>
+      <span v-show="pickerTable !== 'year-table'" @click="changeTableType('month')" class="text"
+        >{{ monthHead[month] }}
+      </span>
+      <span v-show="pickerTable === 'date-table'" @click="nextMonth" class="next-month-btn">›</span>
+      <span class="next-year-btn" @click="nextYear">»</span>
     </div>
     <div :class="[datePickerPanelClasses + '-content']">
       <div v-if="pickerTable === 'date-table'" :class="[datePickerPanelClasses + '-cell-head']">
@@ -83,10 +85,18 @@ export default class datepickerCalendar extends Vue {
   get yearTitleEnd(): number {
     return this.yearTitleStart + 10;
   }
+  get yearTitle(): string {
+    if (this.pickerTable === 'year-table') {
+      return this.yearTitleStart + '-' + this.yearTitleEnd;
+    } else {
+      return String(this.year);
+    }
+  }
   get years(): number[] {
     const arr = [];
-    let start = this.yearTitleStart - 1;
-    while (arr.length < 12) {
+    let start = this.yearTitleStart;
+    
+    while (arr.length < 11) {
       arr.push(start++);
     }
     return arr;
@@ -169,16 +179,17 @@ export default class datepickerCalendar extends Vue {
   setSelected(item: any): boolean {
     let flag: boolean = false;
     let transform = this.$parent.transformValue;
-
+    // year情况下，item为一个数字
+    let currentTime = new Date(item.year|| item, item.month || 1, item.day || 1);
     if (this.pickerTable === 'date-table') {
-      let currentTime = new Date(item.year, item.month, item.day);
+      
       flag = transform(this.value) === transform(currentTime);
     } else if (this.pickerTable === 'month-table') {
-      let currentMonth = new Date(item.year, item.month, 1);
-      
-      flag = transform(currentMonth, 'YYYY-MM') === transform(this.value, 'YYYY-MM');
+       
+
+      flag = transform(currentTime, 'YYYY-MM') === transform(this.value, 'YYYY-MM');
     } else {
-      flag = this.year === item;
+      flag = transform(this.value, 'YYYY') === transform(currentTime, 'YYYY');
     }
     return flag;
   }
@@ -187,6 +198,20 @@ export default class datepickerCalendar extends Vue {
   }
   getTableType(type: string): string {
     return `${type}-table`;
+  }
+  preYear() {
+    if (this.pickerTable === 'year-table') {
+      this.year  -= 10;
+    }else {
+      this.year--;
+    }
+  }
+  nextYear() {
+    if (this.pickerTable === 'year-table') {
+      this.year  += 10;
+    }else {
+      this.year++;
+    }
   }
   // this.$emit('input',data) 也可以使用
   preMonth() {
@@ -215,20 +240,21 @@ export default class datepickerCalendar extends Vue {
       } else if (this.pickerTable === 'month-table') {
         this.changeTableType('date');
       }
-
       return false;
     }
     return true;
   }
+  
   handleClick(item: any) {
-    if (this.pickerTable === 'month-table') {
+    if(this.pickerTable === 'year-table'){
+      this.year = item;
+    }else if(this.pickerTable === 'month-table'){
       this.month = item.month;
-    }
+    } 
     let flag = this.handlePick();
     if (!flag) {
       return;
     }
-
     let value = new Date(item.year || this.year, item.month || this.month, item.day || this.day);
 
     item && item.next && this.nextMonth();
@@ -239,7 +265,9 @@ export default class datepickerCalendar extends Vue {
     this.$parent.handleConfirm();
     // if(){}
   }
-
+  mounted() {
+     
+  }
   // getDaysClasses(item: days): classes {
   //   // methods和computed都依赖组建内部的值和props，当发生改变时候就会执行相应的方法
   //   let transform = this.$parent.transformValue;
