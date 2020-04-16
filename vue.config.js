@@ -1,11 +1,4 @@
-module.exports = {
-  //   devServer: {
-  //     overlay: {
-  //       warnings: true,
-  //       errors: false
-  //     }
-  //   }
-};
+
 const striptags = require('./strip-tags');
 const md = require('markdown-it')();
 const wrap = function(render) {
@@ -27,6 +20,7 @@ function convert(str) {
 }
 module.exports = {
   lintOnSave: 'warning',
+  parallel: false,
   //   devServer: {
   //     overlay: {
   //       warnings: true,
