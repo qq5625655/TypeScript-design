@@ -13,6 +13,9 @@
           <yuMenuItem to="/checkbox" name="checkbox">
             Checkbox按钮
           </yuMenuItem>
+          <yuMenuItem to="/menu" name="Menu">
+            Menu菜单
+          </yuMenuItem>
         </yuMenu>
       </div>
       <div class="app_right">

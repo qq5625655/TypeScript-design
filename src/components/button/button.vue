@@ -28,14 +28,8 @@ export interface ButtonProps {
 interface styleWidth {
   width: String;
 }
-export type AnchorButtonProps = {
-  href?: string;
-  target?: string;
-  linkUrl?: string;
-};
-export type NativeButtonProps = {
-  htmlType?: string;
-};
+
+
 
 const prefixCls = 'itu-btn';
 @Component({

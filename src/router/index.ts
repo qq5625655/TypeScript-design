@@ -5,6 +5,7 @@ import Introduction from '../../example/introduction.vue';
 import Main from '../../example/Index.vue';
 import Button from '../../example/docs/Button.md';
 import Checkbox from '../../example/docs/Checkbox.md';
+import Menu from '../../example/docs/Menu.md';
 Vue.use(VueRouter);
 
 const routes = [
@@ -28,6 +29,11 @@ const routes = [
         path: 'checkbox',
         name: 'checkbox',
         component: Checkbox
+      },
+      {
+        path: 'menu',
+        name: 'menu',
+        component: Menu
       }
     ]
   },
