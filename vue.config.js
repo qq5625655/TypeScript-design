@@ -20,7 +20,7 @@ function convert(str) {
 module.exports = {
   lintOnSave: 'warning',
   parallel: false,
-  publicPath: process.env.NODE_ENV === 'production' ? '/TypeScript-design/' : '/',
+  publicPath: process.env.NODE_ENV === 'production' ? './' : '/',
   //   devServer: {
   //     overlay: {
   //       warnings: true,
