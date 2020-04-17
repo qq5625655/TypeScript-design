@@ -1,4 +1,3 @@
-
 const striptags = require('./strip-tags');
 const md = require('markdown-it')();
 const wrap = function(render) {
@@ -21,6 +20,7 @@ function convert(str) {
 module.exports = {
   lintOnSave: 'warning',
   parallel: false,
+  publicPath: process.env.NODE_ENV === 'production' ? '/TypeScript-design/' : '/',
   //   devServer: {
   //     overlay: {
   //       warnings: true,
