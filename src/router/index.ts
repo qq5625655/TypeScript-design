@@ -13,7 +13,7 @@ const routes = [
     path: '/',
     name: 'home',
     component: Main,
-    
+    redirect: '/introduction',
     children: [
       {
         path: 'button',
@@ -41,7 +41,7 @@ const routes = [
 ];
 
 const router = new VueRouter({
-  mode: 'history',
+  
   routes
 });
 
