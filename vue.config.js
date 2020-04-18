@@ -1,4 +1,3 @@
-
 const striptags = require('./strip-tags');
 const md = require('markdown-it')();
 const wrap = function(render) {
