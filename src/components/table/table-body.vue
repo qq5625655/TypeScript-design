@@ -13,6 +13,12 @@
               @onChnage="toggleSelect(index)"
               v-if="column.type === 'selection'"
             ></Checkbox>
+            <TableSlot
+              v-else-if="column.type === 'slot'"
+              :item="item"
+              :column="column"
+              :index="index"
+            ></TableSlot>
             <span v-else>{{ item[column.key] }}</span>
           </div>
         </td>
@@ -22,9 +28,11 @@
   <!-- </div> -->
 </template>
 <script>
-import Checkbox from '@/components/checkbox/checkbox';
-import Emitter from '../emitterTest';
+import Checkbox from './checkbox';
+import Emitter from '../../mixins/emitter';
+import TableSlot from './slot';
 export default {
+  inject: ['tableRoot'],
   mixins: [Emitter],
   props: {
     columns: {
@@ -43,7 +51,8 @@ export default {
     // bodyHeightStyle: Object,
   },
   components: {
-    Checkbox
+    Checkbox,
+    TableSlot
   },
   computed: {
     styles() {
@@ -71,6 +80,9 @@ export default {
     setCellWith(item) {
       const width = item.width ? item.width : this.tableBodyWidth;
       return width;
+    },
+    mounted() {
+      console.log('tableRoot', this.tableRoot);
     }
   }
 };

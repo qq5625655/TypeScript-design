@@ -11,7 +11,7 @@ import { Prop, Watch } from 'vue-property-decorator';
 // const Emitter = require('./emitter.js');
 
 // 使用ts编写
-import Emitter from './emitter';
+import Emitter from '../../mixins/emitter';
 
 @Component({
   name: 'yuMenu'

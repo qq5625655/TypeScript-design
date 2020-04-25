@@ -16,6 +16,9 @@
           <yuMenuItem to="/menu" name="Menu">
             Menu菜单
           </yuMenuItem>
+          <yuMenuItem to="/table" name="table">
+            Table表格
+          </yuMenuItem>
         </yuMenu>
       </div>
       <div class="app_right">

@@ -8,7 +8,6 @@
     <!-- <colgroup>
         <col v-for="(column, index) in columns" :key="index" :width="setCellWidth(column)" />
       </colgroup>-->
-
     <thead>
       <tr>
         <th v-for="(column, index) in columns" :key="index">
@@ -18,9 +17,6 @@
               :value="isSelectAll"
               @onChnage="selectAll"
             ></Checkbox>
-            <span v-if="column.type === 'selection'">
-              <i class="icon-arrow-up"></i>
-            </span>
             <span v-else>{{ column.title }}</span>
           </div>
         </th>
@@ -31,7 +27,7 @@
   <!-- </div> -->
 </template>
 <script>
-import Checkbox from '@/components/checkbox/checkbox';
+import Checkbox from './checkbox';
 
 export default {
   props: {
@@ -79,8 +75,6 @@ export default {
       }
       return isSelectAll;
     },
-
-    // eslint-disable-next-line vue/return-in-computed-property
     scrollWidth() {
       const width = this.$parent.scrollWidth;
 
@@ -89,7 +83,6 @@ export default {
       }
     }
   },
-
   methods: {
     setCellWith(item) {
       const width = item.width ? item.width : this.tableBodyWidth;

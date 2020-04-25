@@ -11,7 +11,7 @@ import { Prop } from 'vue-property-decorator';
 // 测试声明模块
 // js 无法通过编译，使用ts
 // import Emitter from '../../mixins/emitter.js';
-import Emitter from './emitter';
+import Emitter from '../../mixins/emitter';
 const prefixCls = 'itu-menu';
 
 @Component({
@@ -47,4 +47,3 @@ export default class Menu extends mixins(Emitter) {
   }
 }
 </script>
-

@@ -1,8 +1,6 @@
 <template>
-  <span
-    :class="checkboxClasses"
-  >
-      <!-- class="ant-checkbox"
+  <span :class="checkboxClasses">
+    <!-- class="ant-checkbox"
     :class="{'ant-checkbox-checked': currentValue ,'ant-checkbox-disabled': disabled}" -->
     <input
       v-if="group"
@@ -25,12 +23,10 @@
   </span>
 </template>
 <script>
-
 export default {
   props: {
     label: {
-      type: String,
-
+      type: String
     },
     disabled: {
       type: Boolean,
@@ -40,10 +36,10 @@ export default {
       type: Boolean,
       default: false
     },
-    value:{
+    value: {
       type: Boolean,
-      default: false,
-    },
+      default: false
+    }
   },
   data() {
     return {
@@ -52,21 +48,19 @@ export default {
       model: []
     };
   },
-  computed:{
-    checkboxClasses(){
-      return[
+  computed: {
+    checkboxClasses() {
+      return [
         `ant-checkbox`,
         {
           [`ant-checkbox-checked`]: this.value,
-          [`ant-checkbox-disabled`]: this.disabled,
-        },
-      ]
-    },
-
+          [`ant-checkbox-disabled`]: this.disabled
+        }
+      ];
+    }
   },
   methods: {
     changeItem(item) {
-
       if (this.disabled) {
         return;
       }
@@ -74,23 +68,20 @@ export default {
       this.currentValue = item.target.checked;
 
       if (this.group) {
-
         this.$parent.change(this.model);
       }
-      this.$emit("input", this.currentValue);
+      this.$emit('input', this.currentValue);
       this.$emit('onChnage', this.currentValue);
     }
   },
   mounted() {
-    if (this.$parent.$options.name === "CheckboxGroup") {
+    if (this.$parent.$options.name === 'CheckboxGroup') {
       this.group = true;
     }
     if (this.group) {
       this.$parent.updateModel(true);
     }
-    
-  },
-
+  }
 };
 </script>
 <style lang="scss" scoped>
@@ -103,8 +94,8 @@ export default {
   font-variant: tabular-nums;
   line-height: 1.5;
   list-style: none;
-  -webkit-font-feature-settings: "tnum";
-  font-feature-settings: "tnum";
+  -webkit-font-feature-settings: 'tnum';
+  font-feature-settings: 'tnum';
   position: relative;
   top: -0.09em;
   display: inline-block;
@@ -153,10 +144,9 @@ export default {
       -ms-transform: rotate(45deg) scale(0) translate(-50%, -50%);
       transform: rotate(45deg) scale(0) translate(-50%, -50%);
       opacity: 0;
-      -webkit-transition: all 0.1s cubic-bezier(0.71, -0.46, 0.88, 0.6),
-        opacity 0.1s;
+      -webkit-transition: all 0.1s cubic-bezier(0.71, -0.46, 0.88, 0.6), opacity 0.1s;
       transition: all 0.1s cubic-bezier(0.71, -0.46, 0.88, 0.6), opacity 0.1s;
-      content: " ";
+      content: ' ';
     }
   }
 }
@@ -174,7 +164,7 @@ export default {
     animation: antCheckboxEffect 0.36s ease-in-out;
     -webkit-animation-fill-mode: backwards;
     animation-fill-mode: backwards;
-    content: "";
+    content: '';
   }
 
   .ant-checkbox-inner {
@@ -193,7 +183,7 @@ export default {
     opacity: 1;
     -webkit-transition: all 0.2s cubic-bezier(0.12, 0.4, 0.29, 1.46) 0.1s;
     transition: all 0.2s cubic-bezier(0.12, 0.4, 0.29, 1.46) 0.1s;
-    content: " ";
+    content: ' ';
   }
 }
 .ant-checkbox-disabled {

@@ -6,6 +6,7 @@ import Main from '../../example/Index.vue';
 import Button from '../../example/docs/Button.md';
 import Checkbox from '../../example/docs/Checkbox.md';
 import Menu from '../../example/docs/Menu.md';
+import Table from '../../example/docs/Table.md';
 Vue.use(VueRouter);
 
 const routes = [
@@ -34,9 +35,15 @@ const routes = [
         path: 'menu',
         name: 'menu',
         component: Menu
-      }
+      },
+      {
+        path:'table',
+        name:'table',
+        component:Table,
+      },
     ]
   },
+  
   
 ];
 
