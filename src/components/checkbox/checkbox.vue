@@ -80,6 +80,11 @@ export default {
     if (this.group) {
       this.$parent.updateModel(true);
     }
+  },
+  watch: {
+    value(val) {
+      this.currentValue = val;
+    }
   }
 };
 </script>

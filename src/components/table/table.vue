@@ -231,9 +231,9 @@ export default {
   },
   methods: {
     selectAll(status) {
-      console.log('status', status);
       this.checkColumn.forEach((item) => {
         item.checked = status;
+        console.log('item', item.checked);
       });
     },
     handleBodyScroll(event) {

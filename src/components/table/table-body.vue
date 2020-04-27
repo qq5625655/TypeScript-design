@@ -28,7 +28,7 @@
   <!-- </div> -->
 </template>
 <script>
-import Checkbox from './checkbox';
+import Checkbox from '../checkbox/checkbox.vue';
 import Emitter from '../../mixins/emitter';
 import TableSlot from './slot';
 export default {

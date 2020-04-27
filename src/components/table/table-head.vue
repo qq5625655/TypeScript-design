@@ -27,8 +27,7 @@
   <!-- </div> -->
 </template>
 <script>
-import Checkbox from './checkbox';
-
+import Checkbox from '../checkbox/checkbox.vue';
 export default {
   props: {
     columns: {
@@ -56,11 +55,6 @@ export default {
       style.width = `${width}px`;
 
       return style;
-      //   const style = Object.assign({}, this.styleObject);
-
-      //   if(!!style.width){
-
-      //   }
     },
     isSelectAll() {
       let isSelectAll = true;
@@ -78,9 +72,7 @@ export default {
     scrollWidth() {
       const width = this.$parent.scrollWidth;
 
-      if (width) {
-        return `${width}px`;
-      }
+      return `${width}px`;
     }
   },
   methods: {
@@ -88,10 +80,9 @@ export default {
       const width = item.width ? item.width : this.tableBodyWidth;
       return `${width}`;
     },
-    selectAll() {
-      const status = !this.isSelectAll;
-      console.log('this', this.$parent);
-      this.$parent.selectAll(status);
+    selectAll(value) {
+      // const status = !this.isSelectAll;
+      this.$parent.selectAll(value);
     }
   },
   mounted() {}
