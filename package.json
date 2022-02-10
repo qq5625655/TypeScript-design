@@ -34,7 +34,7 @@
     "markdown-it": "^10.0.0",
     "markdown-it-anchor": "^5.2.5",
     "markdown-it-container": "^2.0.0",
-    "node-sass": "^4.12.0",
+    "node-sass": "^7.0.0",
     "prettier": "^1.19.1",
     "sass-loader": "^8.0.0",
     "typescript": "^3.5.3",
